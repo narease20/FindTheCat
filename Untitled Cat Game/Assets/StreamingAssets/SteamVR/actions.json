@@ -57,7 +57,7 @@
     {
       "name": "/actions/default/in/Jump",
       "type": "boolean",
-      "requirement": "suggested"
+      "requirement": "mandatory"
     },
     {
       "name": "/actions/default/out/Haptic",

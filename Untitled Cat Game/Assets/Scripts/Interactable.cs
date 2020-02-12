@@ -9,42 +9,32 @@ public class Interactable : MonoBehaviour
     public int weight = 0;
     [HideInInspector]
     public Hand activeHand = null;
+    [HideInInspector]
     public float throwPower;
+    public bool sizeDown;
 
     public virtual void Update()
     {
-        Rigidbody rb = GetComponent<Rigidbody>();
         switch (weight)
         {
             case 0:
-                rb.drag = 0;
-                rb.angularDrag = 0.05f;
+                throwPower = 2f;
                 break;
             case 1:
-                rb.drag = 0.5f;
-                rb.angularDrag = 0.04f;
+                throwPower = 1.5f;
                 break;
             case 2:
-                rb.drag = 0.04f;
-                rb.angularDrag = 0.03f;
+                throwPower = 1f;
                 break;
             case 3:
-                rb.drag = 0.03f;
-                rb.angularDrag = 0.02f;
+                throwPower = 0.75f;
                 break;
             case 4:
-                rb.drag = 0.02f;
-                rb.angularDrag = 0.01f;
+                throwPower = 0.5f;
                 break;
             case 5:
-                rb.drag = 0.01f;
-                rb.angularDrag = 0.005f;
+                throwPower = 0.25f;
                 break;
-            case 6:
-                rb.drag = 50;
-                rb.angularDrag = 0.001f;
-                break;
-
         }
     }
 
