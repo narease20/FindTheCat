@@ -5,8 +5,8 @@ using Valve.VR;
 
 public class VRController : MonoBehaviour
 {
-    public float m_Gravity = 30.0f;
-    public float m_MaxGravity = 150f;
+    public float gravity = 30.0f;
+    public float maxGravity = 150f;
 
     [SerializeField, Range(0f, 10f)]
     public float jumpHeight = 2.5f;
@@ -14,26 +14,26 @@ public class VRController : MonoBehaviour
     public float maxJumpCounter = 5.5f;
 
 
-    public float m_Sensitivity = 0.1f;
+    public float sensitivity = 0.1f;
 
-    public float m_MaxSpeed = 2.45f;
+    public float maxSpeed = 2.45f;
     public float maxAcceleration = 0.1f, maxAirAcceleration = 1f;
 
-    public float m_RotateIncrement = 90;
-    public SteamVR_Action_Boolean m_RotatePress = null;
+    public float rotateIncrement = 90;
+    public SteamVR_Action_Boolean rotatePress = null;
 
-    public SteamVR_Action_Boolean m_MovePress = null;
-    public SteamVR_Action_Vector2 m_MoveValue = null;
+    public SteamVR_Action_Boolean movePress = null;
+    public SteamVR_Action_Vector2 moveValue = null;
 
-    public SteamVR_Action_Boolean m_JumpPress = null;
+    public SteamVR_Action_Boolean jumpPress = null;
 
-    private float m_Speed = 0.0f;
-    public Rigidbody m_rb;
+    private float speed = 0.0f;
+    private Rigidbody rb;
     private float moveAccel = 0.35f;
-    private float moveDecel = 1.3f;
+    private float moveDecel = 0.3f;
 
-    private CharacterController m_CharacterController = null;
-    private Transform m_Head = null;
+    private CharacterController characterController = null;
+    private Transform head = null;
 
     public float maxHeadHeight = 2.5f;
     public float minHeadHeight = 0.3f;
@@ -46,16 +46,19 @@ public class VRController : MonoBehaviour
 
     float minGroundDotProduct;
     Vector3 contactNormal;
-    SphereCollider m_GroundCollision;
-    BoxCollider m_HeadCollision;
-    public GameObject vision;
+    //SphereCollider groundCollision;
+    //BoxCollider headCollision;
+    CapsuleCollider player;
+    public GameObject PlayArea;
+    public GameObject Camera;
 
     private void Awake()
     {
-        m_CharacterController = GetComponent<CharacterController>();
-        m_rb = GetComponent<Rigidbody>();
-        m_GroundCollision = GetComponent<SphereCollider>();
-        m_HeadCollision = GetComponent<BoxCollider>();
+        characterController = GetComponent<CharacterController>();
+        rb = GetComponent<Rigidbody>();
+        //groundCollision = GetComponent<SphereCollider>();
+        //headCollision = GetComponent<BoxCollider>();
+        player = GetComponent<CapsuleCollider>();
         OnValidate();
     }
 
@@ -67,14 +70,14 @@ public class VRController : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        m_Head = SteamVR_Render.Top().head;
-        m_rb = GetComponent<Rigidbody>();
+        head = SteamVR_Render.Top().head;
+        rb = GetComponent<Rigidbody>();
         jumpCounter = Mathf.Clamp(jumpCounter, 0, maxJumpCounter);
-        m_Gravity = Mathf.Clamp(m_Gravity, 0, m_MaxGravity);
+        gravity = Mathf.Clamp(gravity, 0, maxGravity);
 
-        velocity.y = Mathf.Clamp(velocity.y, 0, m_MaxGravity);
-        velocity.x = Mathf.Clamp(velocity.x, -m_MaxSpeed, m_MaxSpeed);
-        velocity.z = Mathf.Clamp(velocity.z, -m_MaxSpeed, m_MaxSpeed);
+        velocity.y = Mathf.Clamp(velocity.y, 0, maxGravity);
+        velocity.x = Mathf.Clamp(velocity.x, -maxSpeed, maxSpeed);
+        velocity.z = Mathf.Clamp(velocity.z, -maxSpeed, maxSpeed);
     }
 
     // Update is called once per frame
@@ -82,41 +85,46 @@ public class VRController : MonoBehaviour
     {
         HandleHeight();
         CalculateMovement();
-        SnapRotation();
-        desiredJump = m_JumpPress.GetStateDown(SteamVR_Input_Sources.Any);
+        CheckGround();
+        //SnapRotation();
+        desiredJump = jumpPress.GetStateDown(SteamVR_Input_Sources.Any);
     }
 
     private void FixedUpdate()
     {
         CalculateVelocity();
-        if (m_JumpPress.GetStateDown(SteamVR_Input_Sources.Any) || desiredJump)
+        if (jumpPress.GetStateDown(SteamVR_Input_Sources.Any) || desiredJump)
         {
             desiredJump = false;
             Jump();
         }
-        onGround = false;
+        //onGround = false;
     }
 
+    // SOMETHING WRONG HERE THAT MAKES PLAYER FLY
     // Function that changes player's representation in the game based on their head's local height
     private void HandleHeight()
     {
         // Get heads local space
-        float headHeight = Mathf.Clamp(m_Head.localPosition.y, minHeadHeight, maxHeadHeight);
-        float reduceHead;
+        float headHeight = Mathf.Clamp(head.localPosition.y, minHeadHeight, maxHeadHeight);
         //m_CharacterController.height = headHeight;
-        m_HeadCollision.center = new Vector3 (0, headHeight, 0);
+        //headCollision.center = new Vector3 (0, headHeight, 0);
+        player.height = headHeight;
 
         // cut in half
         Vector3 newCenter = Vector3.zero;
         //newCenter.y = m_CharacterController.height / 2;
         //newCenter.y += m_CharacterController.skinWidth;
 
-        newCenter.y = m_HeadCollision.center.y / 2;
-        newCenter.y += m_HeadCollision.size.y;
+        //newCenter.y = headCollision.center.y / 2;
+        //newCenter.y += headCollision.size.y;
+
+        newCenter.y = player.height / 2;
+        newCenter.y += player.center.y;
 
         // Move capsule in local space
-        newCenter.x = m_Head.localPosition.x;
-        newCenter.z = m_Head.localPosition.z;
+        newCenter.x = head.localPosition.x;
+        newCenter.z = head.localPosition.z;
 
         /*
         // rotate
@@ -127,78 +135,86 @@ public class VRController : MonoBehaviour
         // apply
         //m_CharacterController.center = newCenter;
         //m_CharacterController.height = headHeight / 1.3f;
-        m_GroundCollision.center =  new Vector3(newCenter.x, newCenter.y - 0.3f, newCenter.z);
-        m_HeadCollision.center = new Vector3(newCenter.x, newCenter.y + headHeight, newCenter.z);
-        vision.transform.position = new Vector3(newCenter.x, newCenter.y + headHeight, newCenter.z);
+
+        //groundCollision.center =  new Vector3(newCenter.x, newCenter.y - 0.3f, newCenter.z);
+        //headCollision.center = new Vector3(newCenter.x, newCenter.y, newCenter.z);
+
+        //PlayArea.transform.position = new Vector3(newCenter.x, newCenter.y - 0.3f, newCenter.z);
+
+        player.center = new Vector3(newCenter.x, 0.3f, newCenter.z);
+        player.height = headHeight;
+
+        //Camera.transform.position = new Vector3(Camera.transform.position.x, Camera.transform.position.y - 0.2f, Camera.transform.position.z);
+
+        PlayArea.transform.position = new Vector3(player.transform.position.x, player.transform.position.y - 0.2f, player.transform.position.z);
     }
 
-    // Calculates player movement and handles the jump code
+    // Calculates player movement
     private void CalculateMovement()
     {
         Quaternion orientation = CalculateOrientation();
         Vector3 movement = Vector3.zero;
 
         // Check if not moving
-        if (m_MoveValue.axis.magnitude == 0)
+        if (moveValue.axis.magnitude == 0)
         {
-            m_Speed = 0;
-            //m_rb.velocity /= moveDecel;
+            speed = 0;
+            rb.velocity /= moveDecel;
         }
 
+        if(moveValue.axis.magnitude > 0.2f)
+        {
+            //Add, clamp
+            speed += moveValue.axis.magnitude * moveAccel;
+            speed = Mathf.Clamp(speed, -maxSpeed, maxSpeed);
+
+            //orintation
+            movement += orientation * (speed * Vector3.forward);
+
+            //movement.y -= gravity + Time.deltaTime;
+            // Apply Speed
+            rb.velocity += (movement * Time.deltaTime);
+        }
+        /*
         //Add, clamp
-        m_Speed += m_MoveValue.axis.magnitude * m_Sensitivity * moveAccel;
-        m_Speed = Mathf.Clamp(m_Speed, -m_MaxSpeed, m_MaxSpeed);
+        speed += moveValue.axis.magnitude * moveAccel;
+        speed = Mathf.Clamp(speed, -maxSpeed, maxSpeed);
 
         //orintation
-        movement += orientation * (m_Speed * Vector3.forward);
+        movement += orientation * (speed * Vector3.forward);
 
-        // Jump
-        if (m_JumpPress.GetState(SteamVR_Input_Sources.Any) && m_CharacterController.isGrounded)// && jumpCounter < maxJumpCounter)
-        {
-            //m_rb.velocity += new Vector3(0, jumpSpeed, 0);
-            //m_CharacterController.Move(new Vector3(0, jumpSpeed, 0));
-        }
-
-        /*
-
-        // Gravity
-        if(!m_CharacterController.isGrounded && jumpCounter < maxJumpCounter)
-        {
-            jumpCounter += Time.deltaTime;
-        }
-
-        if (!m_CharacterController.isGrounded && jumpCounter == maxJumpCounter)
-        {
-            movement.y -= m_Gravity + Time.deltaTime;
-            jumpCounter = 0;
-        }
-        */
-
-        //movement.y -= m_Gravity + Time.deltaTime;
+        //movement.y -= gravity + Time.deltaTime;
         // Apply Speed
-        //m_rb.velocity += (movement * Time.deltaTime);
+        rb.velocity += (movement * Time.deltaTime);
         //m_CharacterController.Move(movement * Time.deltaTime);
-        desiredVelocity = new Vector3(movement.x, 0, movement.z) * m_MaxSpeed;
-
-        //transform.localPosition = (new Vector3(movement.x, 0, movement.z) * m_Speed)* Time.deltaTime;
+        //desiredVelocity = new Vector3(movement.x, 0, movement.z); //* maxSpeed;
+        */
+        //transform.localPosition = (new Vector3(movement.x, 0, movement.z) * speed)* Time.deltaTime;
 
     }
 
     // Calculates the velocity of the player and applies gravity if they are not on the ground
     private void CalculateVelocity()
     {
-        velocity = m_rb.velocity;
+        velocity = rb.velocity;
         //velocity = m_CharacterController.velocity;
         AdjustVelocity();
+        /*
         if (!onGround)
         {
             ConstantGravity();
         }
-        if (m_MoveValue.axis.magnitude == 0)
+        */
+        ConstantGravity();
+        if (moveValue.axis.magnitude < 0.2f)
         {
             velocity = new Vector3(velocity.x / moveDecel, velocity.y, velocity.z / moveDecel);
+            if (velocity.magnitude < 0.5f)
+            {
+                velocity = new Vector3(0, velocity.y, 0);
+            }
         }
-        m_rb.velocity = velocity;
+        rb.velocity = velocity;
 
     }
 
@@ -219,11 +235,11 @@ public class VRController : MonoBehaviour
     // Figures out the player's orientation from the play space's sensors
     private Quaternion CalculateOrientation()
     {
-        float rotation = Mathf.Atan2(m_MoveValue.axis.x, m_MoveValue.axis.y);
+        float rotation = Mathf.Atan2(moveValue.axis.x, moveValue.axis.y);
         rotation *= Mathf.Rad2Deg;
 
         // Orintation
-        Vector3 orientationEuler = new Vector3(0, m_Head.eulerAngles.y + rotation, 0);
+        Vector3 orientationEuler = new Vector3(0, head.eulerAngles.y + rotation, 0);
         return Quaternion.Euler(orientationEuler);
 
     }
@@ -233,17 +249,17 @@ public class VRController : MonoBehaviour
     {
         float snapValue = 0.0f;
 
-        if (m_RotatePress.GetStateDown(SteamVR_Input_Sources.LeftHand))
+        if (rotatePress.GetStateDown(SteamVR_Input_Sources.LeftHand))
         {
-            snapValue = -Mathf.Abs(m_RotateIncrement);
+            snapValue = -Mathf.Abs(rotateIncrement);
         }
 
-        if (m_RotatePress.GetStateDown(SteamVR_Input_Sources.RightHand))
+        if (rotatePress.GetStateDown(SteamVR_Input_Sources.RightHand))
         {
-            snapValue = Mathf.Abs(m_RotateIncrement);
+            snapValue = Mathf.Abs(rotateIncrement);
         }
 
-        transform.RotateAround(m_Head.position, Vector3.up, snapValue);
+        transform.RotateAround(head.position, Vector3.up, snapValue);
         //transform.RotateAround(m_connected.transform.position, Vector3.up, snapValue);
 
     }
@@ -272,11 +288,35 @@ public class VRController : MonoBehaviour
         }
     }
 
+    void EvaluateCollision(Vector3 normal)
+    {
+        if (normal.y >= minGroundDotProduct)
+        {
+            onGround = true;
+            contactNormal = normal;
+        }
+    }
+
     // Uses a vector to figure out how the contacted normal moves the player
     private Vector3 ProjectOnContactPlane (Vector3 vector)
     {
         return vector - contactNormal * Vector3.Dot(vector, contactNormal);
     }
+
+    private void CheckGround()
+    {
+        RaycastHit hit;
+        if(Physics.Raycast(head.transform.position, transform.TransformDirection(Vector3.down), out hit, maxHeadHeight))
+        {
+            Debug.DrawRay(head.transform.position, transform.TransformDirection(Vector3.down) * hit.distance, Color.black);
+            EvaluateCollision(hit.normal);
+        }
+        else
+        {
+            onGround = false;
+        }
+    }
+
 
     // Takes the player's current velocity and input to move them in the direction specified
     void AdjustVelocity()
@@ -296,22 +336,23 @@ public class VRController : MonoBehaviour
 
         //velocity += xAxis * (newX - currentX) + zAxis * (newZ - currentZ);
 
-        if (m_MoveValue.axis.magnitude > 0)
+        if (moveValue.axis.magnitude > 0)
         {
             velocity += xAxis * (newX - currentX) + zAxis * (newZ - currentZ);
         }
 
-        if (m_MoveValue.axis.magnitude == 0 && velocity != Vector3.zero)
+        /*
+        if (moveValue.axis.magnitude == 0 && velocity != Vector3.zero)
         {
             velocity += (xAxis * (newX - currentX) + zAxis * (newZ - currentZ)) / moveDecel;
         }
-
+        */
     }
 
     // Applies a gravity force on the player over time
     void ConstantGravity()
     {
-        velocity += Physics.gravity * Time.deltaTime;
+        velocity.y += Physics.gravity.y * Time.deltaTime;
     }
 
 }
