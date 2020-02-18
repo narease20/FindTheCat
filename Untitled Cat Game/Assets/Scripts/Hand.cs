@@ -18,6 +18,8 @@ public class Hand : MonoBehaviour
     public float maxGrabTimer = 2.5f;
     public float grabTimer = 0.0f;
 
+    public float sizeDownAmount = 0.2f;
+
     private void Awake()
     {
         m_Pose = GetComponent<SteamVR_Behaviour_Pose>();
@@ -72,6 +74,7 @@ public class Hand : MonoBehaviour
         }
     }
 
+    // The interactable is attached to the hand
     public void Pickup()
     {
 
@@ -88,6 +91,11 @@ public class Hand : MonoBehaviour
         {
             // Position
             m_CurrentInteractable.ApplyOffset(transform);
+
+            if (m_CurrentInteractable.sizeDown)
+            {
+                m_CurrentInteractable.transform.localScale -= new Vector3(sizeDownAmount, sizeDownAmount, sizeDownAmount);
+            }
 
             // Attach
             Rigidbody targetBody = m_CurrentInteractable.GetComponent<Rigidbody>();
@@ -108,6 +116,7 @@ public class Hand : MonoBehaviour
 
     }
 
+    // The interactable is unattached from the interactable. If the hand is moving then force is applied to the interactable 
     public void Drop()
     {
         // Null Check
@@ -115,9 +124,15 @@ public class Hand : MonoBehaviour
         {
             // Apply Velocity
             Rigidbody targetBody = m_CurrentInteractable.GetComponent<Rigidbody>();
-            targetBody.velocity = m_Pose.GetVelocity() + transform.forward;
-            targetBody.angularVelocity = m_Pose.GetAngularVelocity() + transform.forward;
+            
+            if (m_CurrentInteractable.sizeDown)
+            {
+                m_CurrentInteractable.transform.localScale += new Vector3(sizeDownAmount, sizeDownAmount, sizeDownAmount);
+            }
+            targetBody.velocity = m_Pose.GetVelocity() * m_CurrentInteractable.throwPower + transform.forward;
+            targetBody.angularVelocity = m_Pose.GetAngularVelocity() * m_CurrentInteractable.throwPower + transform.forward;
             //targetBody.AddForce(m_Pose.GetVelocity());
+            
 
             // Detach
             m_Joint.connectedBody = null;
@@ -139,6 +154,7 @@ public class Hand : MonoBehaviour
 
     }
 
+    // Returns the closest interactable to the hand
     private Interactable GetNearestInteractable()
     {
         Interactable nearest = null;
