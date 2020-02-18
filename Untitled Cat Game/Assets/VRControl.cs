@@ -8,7 +8,7 @@ public class VRControl : MonoBehaviour
     private Transform head = null;
 
     public float maxHeadHeight = 2.5f;
-    public float minHeadHeight = 0.3f;
+    public float minHeadHeight = 0.5f;
 
     public SteamVR_Action_Vector2 moveValue = null;
 
@@ -27,7 +27,8 @@ public class VRControl : MonoBehaviour
     private bool onGround;
     Vector3 contactNormal;
     Vector3 velocity;
-    Transform children;
+    Transform LeftHand;
+    Transform RightHand;
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +37,8 @@ public class VRControl : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         player = GetComponent<CapsuleCollider>();
         vision = GetComponent<SteamVR_Camera>();
-        children = GetComponentInChildren<Transform>();
+        LeftHand = GetComponentInChildren<Transform>();
+        RightHand = GetComponentInChildren<Transform>();
 
         velocity.y = Mathf.Clamp(velocity.y, 0, 100);
     }
@@ -61,12 +63,12 @@ public class VRControl : MonoBehaviour
     {
         // Get heads local space
         float headHeight = Mathf.Clamp(head.localPosition.y, minHeadHeight, maxHeadHeight);
-        player.height = headHeight * 3;
+        player.height = headHeight;
 
         // cut in half
         Vector3 newCenter = Vector3.zero;
         
-        newCenter.y = player.height / 2;
+        newCenter.y = headHeight / 2;
         //newCenter.y += player.center.y;
 
         // Move capsule in local space
@@ -76,7 +78,10 @@ public class VRControl : MonoBehaviour
         newCenter = Quaternion.Euler(0, -transform.eulerAngles.y, 0) * newCenter;
 
         player.center = new Vector3(newCenter.x, newCenter.y - 1, newCenter.z);
-        //player.height = headHeight;
+        player.height = headHeight;
+        //LeftHand.transform.position = new Vector3(player.transform.localPosition.x, player.transform.localPosition.y - 1, player.transform.localPosition.z);
+        //RightHand.transform.position = new Vector3(player.transform.localPosition.x, player.transform.localPosition.y - 1, player.transform.localPosition.z);
+        //player.center = new Vector3(0, newCenter.y - 1, 0);
 
     }
 
@@ -98,9 +103,10 @@ public class VRControl : MonoBehaviour
         if (moveValue.axis.magnitude > sensitivity)
         {
             // speed player up
+            velocity += orientation * (moveValue.axis.magnitude * Vector3.forward);
         }
 
-
+        //rb.MovePosition(velocity);
         rb.velocity = velocity;
         /*
         // Check if not moving

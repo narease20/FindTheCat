@@ -446,7 +446,7 @@ MonoBehaviour:
     actionPath: /actions/default/in/Pose
     needsReinit: 1
   inputSource: 2
-  origin: {fileID: 1194082725}
+  origin: {fileID: 0}
   onTransformUpdated:
     m_PersistentCalls:
       m_Calls:
@@ -1186,7 +1186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHeadHeight: 2.5
-  minHeadHeight: 0.3
+  minHeadHeight: 0.5
   moveValue:
     actionPath: /actions/default/in/TouchPadPosition
     needsReinit: 0
@@ -2719,7 +2719,7 @@ MonoBehaviour:
     actionPath: /actions/default/in/Pose
     needsReinit: 1
   inputSource: 1
-  origin: {fileID: 1194082725}
+  origin: {fileID: 0}
   onTransformUpdated:
     m_PersistentCalls:
       m_Calls:
