@@ -146,7 +146,7 @@ public class VRController : MonoBehaviour
 
         //Camera.transform.position = new Vector3(Camera.transform.position.x, Camera.transform.position.y - 0.2f, Camera.transform.position.z);
 
-        PlayArea.transform.position = new Vector3(player.transform.position.x, player.transform.position.y - 0.2f, player.transform.position.z);
+        PlayArea.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
     }
 
     // Calculates player movement
