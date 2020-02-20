@@ -5,25 +5,53 @@ using Valve.VR;
 
 public class VRC : MonoBehaviour
 {
-    public float gravity = 30.0f;
-    public float sensitivity = 0.1f;
-    public float maxSpeed = 4.25f;
+    //public float gravity = 30.0f;
+
+    [SerializeField, Range(0.01f, 0.95f), Tooltip("Amount of force the player exerts onto the controller's touchpad.")]
+    public float sensitivity = 0.05f;
+
+    [Header("Movement Speed")]
+
+    public float maxSpeed = 3.25f;
     public float moveAccel = 1.35f;
     public float moveDeccel = 0.9f;
 
+    private float speed = 0.0f;
+
+
+    [Header("Jump Variables")]
+
+    public float jumpHeight = 10f;
+
+    [Header("Inputs")]
+
     public SteamVR_Action_Boolean confirmHeightPress = null;
+    public SteamVR_Action_Boolean jumpPress = null;
     public SteamVR_Action_Boolean movePress = null;
     public SteamVR_Action_Vector2 moveValue = null;
-
-    private float speed = 0.0f;
 
     private CharacterController characterController = null;
     private Transform head;
 
+
+    [Header("Height")]
+
+    [SerializeField, Range(0.45f, 0.95f)]
     public float minHeadHeight = 0.85f;
+    [SerializeField, Range(1, 2)]
     public float maxHeadHeight = 2f;
+
+    [Tooltip("The player's set standard standing height.")]
     public float playerStandardHeight;
-    //public bool heightSet;
+
+    bool heightSet = false;
+
+    [SerializeField, Range(0, 1), Tooltip("The standard height for a crouch.")]
+    public float heightReductionAmount = 0.3f;
+    [SerializeField, Range(0, 0.95f), Tooltip("The percentage amount under their set height the player has to go to acchive a crouch state.")]
+    public float heightPercentageCrouch = 0.9f;
+    [SerializeField, Range(0.1f, 0.75f), Tooltip("The distance checked for an object aboive the player when they are crouched.")]
+    public float heightMeasureDistance = 0.3f;
 
     private void Awake()
     {
@@ -42,8 +70,8 @@ public class VRC : MonoBehaviour
         HandleHeight();
         CalculateMovement();
         ConfirmHeight();
-        CheckCrouch();
-        Jump();
+        //CheckCrouch();
+        //Jump();
     }
 
     // Function that changes player's representation in the game based on their head's local height
@@ -51,7 +79,8 @@ public class VRC : MonoBehaviour
     {
         // Get heads local space
         float headHeight = Mathf.Clamp(head.localPosition.y, minHeadHeight, maxHeadHeight);
-        characterController.height = headHeight;
+        CheckCrouch(headHeight);
+        //characterController.height = headHeight;
 
         // Cut in half
         Vector3 newCenter = Vector3.zero;
@@ -81,9 +110,11 @@ public class VRC : MonoBehaviour
             speed = 0;
         }
         */
+
+        // Add and clamp then multiply with the orientation
         if (moveValue.axis.magnitude == 0)
         {
-            if(speed > 0.1f)
+            if (speed > 0.1f)
             {
                 speed -= moveDeccel;
             }
@@ -92,12 +123,16 @@ public class VRC : MonoBehaviour
                 speed = 0;
             }
         }
+        if (moveValue.axis.magnitude > 0)
+        {
+            speed += moveValue.axis.magnitude * sensitivity * moveAccel;
+        }
 
-        // Add and clamp then multiply with the orientation
-        speed += moveValue.axis.magnitude * sensitivity * moveAccel;
         speed = Mathf.Clamp(speed, -maxSpeed, maxSpeed);
 
         movement += orintation * (speed * Vector3.forward);
+
+        Jump(movement);
 
         // Gravity
         movement.y += Physics.gravity.y - Time.deltaTime; //gravity * Time.fixedDeltaTime;
@@ -121,22 +156,59 @@ public class VRC : MonoBehaviour
     // When the player presses a button, their normal height is recorded
     void ConfirmHeight()
     {
-        if (confirmHeightPress.GetStateUp(SteamVR_Input_Sources.Any) && characterController.height > minHeadHeight)
+        if (confirmHeightPress.GetStateDown(SteamVR_Input_Sources.Any) && characterController.height > minHeadHeight && characterController.height < maxHeadHeight)
         {
             playerStandardHeight = characterController.height;
+            heightSet = true;
+            Debug.Log("Height Set!");
         }
-       
+
     }
 
+    // HEY CHECK IF THIS CAUSES CAMERA TO CLIP THROUGH WALLS AND CELLINGS
     //Checks to see if the height is in a certain range, if it is then make the character controller's height small. If not then set the height to whatever it should be
-    void CheckCrouch()
+    void CheckCrouch(float headHeight)
     {
-        
+        if (heightSet)
+        {
+            if (headHeight < playerStandardHeight * heightPercentageCrouch)
+            {
+                characterController.height = heightReductionAmount;
+                // Puts out a line above the Character controller's position, however its a bit sunken into it. Offset or use height instead?
+                Debug.DrawRay(new Vector3(characterController.center.x, heightReductionAmount, characterController.center.z), transform.TransformDirection(Vector3.up) * heightMeasureDistance, Color.black);
+            }
+            else
+            {
+                characterController.height = headHeight;
+            }
+        }
+        else
+        {
+            characterController.height = headHeight;
+        }
     }
 
-    void Jump()
+    // 
+    Vector3 Jump(Vector3 movement)
     {
+        if (jumpPress.GetStateDown(SteamVR_Input_Sources.Any))
+        {
+            movement = new Vector3(movement.x, jumpHeight, movement.z);
+            return movement;
 
+        }
+        return movement;
     }
 
+    bool CheckAbovePlayer()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(characterController.transform.position, transform.TransformDirection(Vector3.up), out hit, heightMeasureDistance))
+        {
+            Debug.DrawRay(characterController.transform.position, transform.TransformDirection(Vector3.up) * hit.distance, Color.black);
+            return true;
+        }
+
+        return false;
+    }
 }

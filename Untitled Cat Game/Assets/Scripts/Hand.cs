@@ -5,6 +5,8 @@ using Valve.VR;
 
 public class Hand : MonoBehaviour
 {
+    [Header("Inputs")]
+
     public SteamVR_Action_Boolean m_GrabAction = null;
     public SteamVR_Action_Boolean m_TouchpadAction = null; 
 
@@ -13,12 +15,15 @@ public class Hand : MonoBehaviour
 
     private Interactable m_CurrentInteractable = null;
     private Interactable m_CloseInteractable = null;
-    public List<Interactable> m_ContactInteractables = new List<Interactable>();
+    //public List<Interactable> m_ContactInteractables = new List<Interactable>();
+    
+    
+    [Header("Grab Timers")]
 
+    [SerializeField, Range(0, 3), Tooltip("The amount of time between a grab with a hand.")]
     public float maxGrabTimer = 2.5f;
-    public float grabTimer = 0.0f;
+    private float grabTimer = 0.0f;
 
-    public float sizeDownAmount = 0.2f;
 
     private void Awake()
     {
@@ -94,7 +99,7 @@ public class Hand : MonoBehaviour
 
             if (m_CurrentInteractable.sizeDown)
             {
-                m_CurrentInteractable.transform.localScale -= new Vector3(sizeDownAmount, sizeDownAmount, sizeDownAmount);
+                m_CurrentInteractable.transform.localScale -= new Vector3(m_CurrentInteractable.sizeDownAmount, m_CurrentInteractable.sizeDownAmount, m_CurrentInteractable.sizeDownAmount);
             }
 
             // Attach
@@ -127,7 +132,7 @@ public class Hand : MonoBehaviour
             
             if (m_CurrentInteractable.sizeDown)
             {
-                m_CurrentInteractable.transform.localScale += new Vector3(sizeDownAmount, sizeDownAmount, sizeDownAmount);
+                m_CurrentInteractable.transform.localScale += new Vector3(m_CurrentInteractable.sizeDownAmount, m_CurrentInteractable.sizeDownAmount, m_CurrentInteractable.sizeDownAmount);
             }
             targetBody.velocity = m_Pose.GetVelocity() * m_CurrentInteractable.throwPower + transform.forward;
             targetBody.angularVelocity = m_Pose.GetAngularVelocity() * m_CurrentInteractable.throwPower + transform.forward;
