@@ -7,75 +7,104 @@ public class Hand : MonoBehaviour
 {
     [Header("Inputs")]
 
-    public SteamVR_Action_Boolean m_GrabAction = null;
-    public SteamVR_Action_Boolean m_TouchpadAction = null; 
+    public SteamVR_Action_Boolean grabAction = null;
+    public SteamVR_Action_Boolean touchpadAction = null; 
 
-    private SteamVR_Behaviour_Pose m_Pose = null;
-    private FixedJoint m_Joint = null;
+    private SteamVR_Behaviour_Pose pose = null;
+    private FixedJoint joint = null;
 
-    private Interactable m_CurrentInteractable = null;
-    private Interactable m_CloseInteractable = null;
-    //public List<Interactable> m_ContactInteractables = new List<Interactable>();
+    private Interactable currentInteractable = null;
+    private Interactable closeInteractable = null;
+    //public List<Interactable> contactInteractables = new List<Interactable>();
+
+    private BoxCollider handCollider;
+
+    public VRC player;
     
-    
-    [Header("Grab Timers")]
+    [Header("Timers")]
 
     [SerializeField, Range(0, 3), Tooltip("The amount of time between a grab with a hand.")]
     public float maxGrabTimer = 2.5f;
-    private float grabTimer = 0.0f;
-
+    public float grabTimer = 0.0f;
+    [SerializeField, Range(0, 0.5f)]
+    public float colliderReappearTime = 0.35f;
+    [SerializeField, Range(0.01f, 0.15f)]
+    public float droptimer = 0.15f;
+    public bool canDrop = false;
 
     private void Awake()
     {
-        m_Pose = GetComponent<SteamVR_Behaviour_Pose>();
-        m_Joint = GetComponent<FixedJoint>();
-        grabTimer = Mathf.Clamp(grabTimer, 0, maxGrabTimer);
+        pose = GetComponent<SteamVR_Behaviour_Pose>();
+        joint = GetComponent<FixedJoint>();
+        //Mathf.Clamp(grabTimer, 0, maxGrabTimer);
+        handCollider = GetComponent<BoxCollider>();
+        //player = GetComponent<VRC>();
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if (m_GrabAction.GetStateDown(m_Pose.inputSource))
+        // Do object action
+        if (currentInteractable != null && touchpadAction.GetStateDown(pose.inputSource))
         {
-
-            if(m_CurrentInteractable != null && m_TouchpadAction.GetStateDown(m_Pose.inputSource))
-            {
-                m_CurrentInteractable.Action();
-                return;
-            }
-
-            grabTimer = maxGrabTimer;
-            Pickup();
+            currentInteractable.Action();
+            return;
         }
 
-        if (m_GrabAction.GetStateDown(m_Pose.inputSource) && grabTimer == 0.0f)
+        // Grab object if in range
+        if (grabAction.GetStateDown(pose.inputSource))// && grabTimer == 0.0f)
+        {
+            Pickup();
+            canDrop = false;
+            StartCoroutine(DropTimere());
+        }
+
+        // Drop object
+        if (grabAction.GetStateDown(pose.inputSource) && player.grabStyle && currentInteractable && canDrop)
         {
             Drop();
+            StartCoroutine(handColliderRestorer());
         }
 
+        if (grabAction.GetStateUp(pose.inputSource) && !player.grabStyle && currentInteractable)
+        {
+            Drop();
+            StartCoroutine(handColliderRestorer());
+        }
+
+        /*
+        // Drop object
+        if (grabAction.GetStateUp(pose.inputSource))//&& grabTimer == 0.0f)
+        {
+            //grabTimer = maxGrabTimer;
+            Drop();
+            StartCoroutine(handColliderRestorer());
+        }
+
+        // Reduce timer
         if(grabTimer != 0.0f)
         {
             grabTimer -= Time.deltaTime;
         }
-
+        */
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Interactable"))
+        if (other.gameObject.GetComponent<Interactable>())//.CompareTag("Interactable"))
         {
-            //m_ContactInteractables.Add(other.gameObject.GetComponent<Interactable>());
-            m_CloseInteractable = other.gameObject.GetComponent<Interactable>();
+            //contactInteractables.Add(other.gameObject.GetComponent<Interactable>());
+            closeInteractable = other.gameObject.GetComponent<Interactable>();
 
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Interactable"))
+        if (other.gameObject.GetComponent<Interactable>())//.CompareTag("Interactable"))
         {
-            //m_ContactInteractables.Remove(other.gameObject.GetComponent<Interactable>());
-            m_CloseInteractable = null;
+            //contactInteractables.Remove(other.gameObject.GetComponent<Interactable>());
+            closeInteractable = null;
         }
     }
 
@@ -83,35 +112,36 @@ public class Hand : MonoBehaviour
     public void Pickup()
     {
 
-        m_CurrentInteractable = GetNearestInteractable();
+        currentInteractable = GetNearestInteractable();
 
         // Already Held Check
-        if (m_CurrentInteractable && m_CurrentInteractable.activeHand)
+        if (currentInteractable && currentInteractable.activeHand)
         {
-            m_CurrentInteractable.activeHand.Drop();
+            currentInteractable.activeHand.Drop();
         }
 
         // Grabbed Check
-        if (m_CurrentInteractable)
+        if (currentInteractable)
         {
             // Position
-            m_CurrentInteractable.ApplyOffset(transform);
+            currentInteractable.ApplyOffset(transform);
 
-            if (m_CurrentInteractable.sizeDown)
+            // Might be Bugged?
+            if (currentInteractable.sizeDown)
             {
-                m_CurrentInteractable.transform.localScale -= new Vector3(m_CurrentInteractable.sizeDownAmount, m_CurrentInteractable.sizeDownAmount, m_CurrentInteractable.sizeDownAmount);
+                currentInteractable.transform.localScale -= new Vector3(currentInteractable.sizeDownAmount, currentInteractable.sizeDownAmount, currentInteractable.sizeDownAmount);
             }
 
             // Attach
-            Rigidbody targetBody = m_CurrentInteractable.GetComponent<Rigidbody>();
-            m_Joint.connectedBody = targetBody;
+            Rigidbody targetBody = currentInteractable.GetComponent<Rigidbody>();
+            joint.connectedBody = targetBody;
 
             // Set Active Hand
-            m_CurrentInteractable.activeHand = this;
+            currentInteractable.activeHand = this;
 
-            if(m_CurrentInteractable.GetComponent<Collider>())
+            if(currentInteractable.GetComponent<Collider>())
             {
-                m_CurrentInteractable.GetComponent<Collider>().enabled = false;
+                currentInteractable.GetComponent<Collider>().enabled = false;
             }
         }
         else
@@ -125,31 +155,37 @@ public class Hand : MonoBehaviour
     public void Drop()
     {
         // Null Check
-        if (m_CurrentInteractable)
+        if (currentInteractable)
         {
-            // Apply Velocity
-            Rigidbody targetBody = m_CurrentInteractable.GetComponent<Rigidbody>();
-            
-            if (m_CurrentInteractable.sizeDown)
+            handCollider.enabled = false;
+
+            if (currentInteractable.sizeDown)
             {
-                m_CurrentInteractable.transform.localScale += new Vector3(m_CurrentInteractable.sizeDownAmount, m_CurrentInteractable.sizeDownAmount, m_CurrentInteractable.sizeDownAmount);
+                currentInteractable.transform.localScale += new Vector3(currentInteractable.sizeDownAmount, currentInteractable.sizeDownAmount, currentInteractable.sizeDownAmount);
             }
-            targetBody.velocity = m_Pose.GetVelocity() * m_CurrentInteractable.throwPower + transform.forward;
-            targetBody.angularVelocity = m_Pose.GetAngularVelocity() * m_CurrentInteractable.throwPower + transform.forward;
-            //targetBody.AddForce(m_Pose.GetVelocity());
-            
+
+            // Check to see if the object is throwable, else just drop it. Maybe make a public function to provide the player some velocity in the VRC script if the object is a rock wall
+            if (currentInteractable.throwable && currentInteractable.GetComponent<Rigidbody>())
+            {
+                // Apply Velocity
+                Rigidbody targetBody = currentInteractable.GetComponent<Rigidbody>();
+
+                targetBody.velocity = pose.GetVelocity() * currentInteractable.throwPower + transform.forward;
+                targetBody.angularVelocity = pose.GetAngularVelocity() * currentInteractable.throwPower + transform.forward;
+                //targetBody.AddForce(pose.GetVelocity());
+            }
 
             // Detach
-            m_Joint.connectedBody = null;
+            joint.connectedBody = null;
 
-            if (!m_CurrentInteractable.GetComponent<Collider>().enabled)
+            if (!currentInteractable.GetComponent<Collider>().enabled)
             {
-                m_CurrentInteractable.GetComponent<Collider>().enabled = true;
+                currentInteractable.GetComponent<Collider>().enabled = true;
             }
 
             // Clear Variables
-            m_CurrentInteractable.activeHand = null;
-            m_CurrentInteractable = null;
+            currentInteractable.activeHand = null;
+            currentInteractable = null;
 
         }
         else
@@ -166,31 +202,31 @@ public class Hand : MonoBehaviour
         float minDistance = float.MaxValue;
         float distance = 0.0f;
 
-        /*
-        foreach(Interactable interactable in m_ContactInteractables)
+        if (closeInteractable != null)
         {
-            distance = (interactable.transform.position - transform.position).sqrMagnitude;
-
-            if(distance < minDistance)
-            {
-                minDistance = distance;
-                nearest = interactable;
-            }
-        }
-        */
-        if (m_CloseInteractable != null)
-        {
-            distance = (m_CloseInteractable.transform.position - transform.position).sqrMagnitude;
+            distance = (closeInteractable.transform.position - transform.position).sqrMagnitude;
 
             if (distance < minDistance)
             {
                 minDistance = distance;
-                nearest = m_CloseInteractable;
+                nearest = closeInteractable;
             }
 
             return nearest;
         }
 
         return null;
+    }
+
+    IEnumerator handColliderRestorer()
+    {
+        yield return new WaitForSeconds(colliderReappearTime);
+        handCollider.enabled = true;
+    }
+
+    IEnumerator DropTimere()
+    {
+        yield return new WaitForSeconds(droptimer);
+        canDrop = true;
     }
 }

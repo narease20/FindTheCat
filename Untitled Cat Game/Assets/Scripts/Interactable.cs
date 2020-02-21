@@ -9,6 +9,7 @@ public class Interactable : MonoBehaviour
     public Vector3 offset = Vector3.zero;
     [SerializeField, Range(0, 6), Tooltip("Affects the power of the player's throw. Lower is easier to throw while higher is harder. 3 is the normal weight as it's between x2 power(0) and x0.25 power (6).")]
     public int weight = 0;
+    public bool throwable;
 
     [HideInInspector]
     public Hand activeHand = null;
