@@ -81,6 +81,7 @@
     <None Include="Assets\Trees_WorldSpace\Shaders\TreeLeafSwitcherAS.shader" />
     <None Include="Assets\Stylized Mushroom\Shader\mushroom.shader" />
     <None Include="Assets\Trees_WorldSpace\Misc\Obselete_canDelete\ShaderForgeDepricated\Depricated_canDelete\SF_Dep_TreeBarkShader.shader" />
+    <None Include="Assets\WorldMaterialsFree\WorldMatFree.shader" />
     <None Include="Assets\Trees_WorldSpace\Misc\Obselete_canDelete\ShaderForgeDepricated\Depricated_canDelete\SF_Dep_TreeLeavesSwitcher.shader" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/Find The Cat Git/FindTheCat/Untitled Cat Game/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
