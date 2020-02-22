@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Albedo:
-        m_Texture: {fileID: 2800000, guid: 7f4f7879a0ea5ea48ad0e1c9e82db454, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4f06c8be160791b43b4eca0fcf37e3a7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Albedo_MaskA:
@@ -79,7 +79,7 @@ Material:
     - _AO_power: 0.13
     - _BumpScale: 1
     - _Cutoff: 0.5
-    - _DarknessOnSundown: 0.814
+    - _DarknessOnSundown: 0.718
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _Gloss: 0.25
