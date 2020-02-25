@@ -7,15 +7,21 @@ public class Pointer : MonoBehaviour
 {
     public SteamVR_Action_Boolean interactUI = null;
 
-    public float defaultLength = 5.0f;
+    public float defaultLength = 4.0f;
     public GameObject dot;
+    private Renderer dotRenderer;
     public VRInputModule inputModule;
 
-    private LineRenderer lineRenderer = null;
+    public Material disable;
+    public Material enable;
+
+    //private LineRenderer lineRenderer = null;
 
     private void Awake()
     {
-        lineRenderer = GetComponent<LineRenderer>();
+        //lineRenderer = GetComponent<LineRenderer>();
+        dotRenderer = dot.GetComponent<Renderer>();
+        dotRenderer.material = disable;
     }
 
     // Update is called once per frame
@@ -40,15 +46,24 @@ public class Pointer : MonoBehaviour
         if(hit.collider != null)
         {
             endPosition = hit.point;
+            if(hit.collider.tag == "Button")
+            {
+                dotRenderer.material = enable;
+            }
         }
 
+        // Displays the dot's enabled texture sometimes after colliding with the button. Might want to check the tag with an or statement here
+        if(hit.collider == null)
+        {
+            dotRenderer.material = disable;
+        }
 
         // Set postion of dot
         dot.transform.position = endPosition;
 
         // Set positions of line re
-        lineRenderer.SetPosition(0, transform.position);
-        lineRenderer.SetPosition(1, endPosition);
+        //lineRenderer.SetPosition(0, transform.position);
+        //lineRenderer.SetPosition(1, endPosition);
 
     }
 
@@ -69,22 +84,15 @@ public class Pointer : MonoBehaviour
         {
             if (hit.collider.tag == "Button")
             {
-
                 //ButtonInterface collision = hit.collider.GetComponent<ButtonInterface>();
                 //collision.ActivateButton();
                 hit.collider.GetComponent<ButtonInterface>().ActivateButton();
 
-
                 Debug.Log("Clicked Something??");
             }
             Debug.DrawRay(transform.position, transform.forward, Color.cyan, hit.distance);
-            Debug.Log("Found something" + hit.collider.tag);
-
+            //Debug.Log("Found something" + hit.collider.tag);
         }
-
-
     }
-
-
 
 }

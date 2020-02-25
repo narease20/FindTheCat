@@ -11,11 +11,14 @@ public class ButtonInterface : MonoBehaviour
     [TextArea(3, 5)]
     public string[] newText;
 
+    private Queue<string> sentences;
+
+    public int timesInteracted = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        sentences = new Queue<string>();
     }
 
     // Update is called once per frame
@@ -24,12 +27,62 @@ public class ButtonInterface : MonoBehaviour
         
     }
 
+    public void StartText()
+    {
+        sentences.Clear();
+
+        for(int i = 0; i < newText.Length; ++i)
+        {
+            sentences.Enqueue(newText[i]);
+        }
+        //Next();
+    }
+
+    public void Next()
+    {
+        if(sentences.Count == 0)
+        {
+            return;
+        }
+        string sentence = sentences.Dequeue();
+        StopAllCoroutines();
+        StartCoroutine(DisplaySentence(sentence));
+    }
+
+    IEnumerator DisplaySentence(string sentence)
+    {
+        text.text = "";
+        foreach (char letter in sentence.ToCharArray())
+        {
+            text.text += letter;
+            yield return null;
+        }
+    }
+
+    public void Clear()
+    {
+        text.text = "";
+    }
+
     public void ActivateButton()
     {
         if (button.interactable)
         {
-            text.enabled = true;
             Debug.Log("Text should appear?");
+            if(timesInteracted == 0)
+            {
+                text.enabled = true;
+                StartText();
+                timesInteracted++;
+            }
+            
+            if(timesInteracted > 0)
+            {
+                Clear();
+                Next();
+                timesInteracted++;
+            }
+            
         }
     }
 

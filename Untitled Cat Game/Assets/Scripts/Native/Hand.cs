@@ -8,7 +8,8 @@ public class Hand : MonoBehaviour
     [Header("Inputs")]
 
     public SteamVR_Action_Boolean grabAction = null;
-    public SteamVR_Action_Boolean touchpadAction = null; 
+    public SteamVR_Action_Boolean touchpadAction = null;
+    public SteamVR_Action_Boolean switchGrabStyle = null;
 
     private SteamVR_Behaviour_Pose pose = null;
     private FixedJoint joint = null;
@@ -20,7 +21,9 @@ public class Hand : MonoBehaviour
     private BoxCollider handCollider;
 
     public VRC player;
-    
+
+    public bool grabMode = true;
+
     [Header("Timers")]
 
     [SerializeField, Range(0, 3), Tooltip("The amount of time between a grab with a hand.")]
@@ -51,12 +54,17 @@ public class Hand : MonoBehaviour
             return;
         }
 
+        if (switchGrabStyle.GetStateDown(SteamVR_Input_Sources.Any))
+        {
+            SwitchStyles();
+        }
+
         // Grab object if in range
         if (grabAction.GetStateDown(pose.inputSource))// && grabTimer == 0.0f)
         {
             Pickup();
             canDrop = false;
-            StartCoroutine(DropTimere());
+            StartCoroutine(DropTimer());
         }
 
         // Drop object
@@ -72,21 +80,7 @@ public class Hand : MonoBehaviour
             StartCoroutine(handColliderRestorer());
         }
 
-        /*
-        // Drop object
-        if (grabAction.GetStateUp(pose.inputSource))//&& grabTimer == 0.0f)
-        {
-            //grabTimer = maxGrabTimer;
-            Drop();
-            StartCoroutine(handColliderRestorer());
-        }
 
-        // Reduce timer
-        if(grabTimer != 0.0f)
-        {
-            grabTimer -= Time.deltaTime;
-        }
-        */
     }
 
     private void OnTriggerEnter(Collider other)
@@ -126,7 +120,7 @@ public class Hand : MonoBehaviour
             // Position
             currentInteractable.ApplyOffset(transform);
 
-            // Might be Bugged?
+
             if (currentInteractable.sizeDown)
             {
                 currentInteractable.transform.localScale -= currentInteractable.sizeDownAmount;
@@ -218,15 +212,31 @@ public class Hand : MonoBehaviour
         return null;
     }
 
+    // Waits after the object is thrown the puts the player's hand back
     IEnumerator handColliderRestorer()
     {
         yield return new WaitForSeconds(colliderReappearTime);
         handCollider.enabled = true;
     }
 
-    IEnumerator DropTimere()
+    // Helps the button press to throw fucntion correctly by forcing the game to wait before automatically letting go of the object
+    IEnumerator DropTimer()
     {
         yield return new WaitForSeconds(droptimer);
         canDrop = true;
     }
+
+    // Switchs grab Styles
+    public void SwitchStyles()
+    {
+        if (player.grabStyle)
+        {
+            player.grabStyle = false;
+        }
+        if (!player.grabStyle)
+        {
+            player.grabStyle = true;
+        }
+    }
+
 }
