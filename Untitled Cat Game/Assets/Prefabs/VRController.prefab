@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 181784736268531239}
   - component: {fileID: 181784736268531238}
-  - component: {fileID: 181784736268531233}
   - component: {fileID: 181784736268531236}
   m_Layer: 0
   m_Name: VRController
@@ -52,45 +51,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &181784736268531233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 181784736268531232}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f191eee1ddd4c114ba30c6b83dd39f6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gravity: 30
-  maxGravity: 150
-  jumpHeight: 2.5
-  jumpCounter: 0
-  maxJumpCounter: 5.5
-  sensitivity: 0.1
-  maxSpeed: 2.45
-  maxAcceleration: 1.5
-  maxAirAcceleration: 1.5
-  rotateIncrement: 90
-  rotatePress:
-    actionPath: 
-    needsReinit: 0
-  movePress:
-    actionPath: 
-    needsReinit: 0
-  moveValue:
-    actionPath: 
-    needsReinit: 0
-  jumpPress:
-    actionPath: 
-    needsReinit: 0
-  maxHeadHeight: 2.5
-  minHeadHeight: 0.3
-  maxGroundAngle: 90
-  PlayArea: {fileID: 0}
-  Camera: {fileID: 0}
 --- !u!114 &181784736268531236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,11 +63,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ed1b54c23b2fae4c83334a1e6704412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 0.05
-  maxSpeed: 3.25
-  moveAccel: 1.35
-  moveDeccel: 0.9
-  jumpHeight: 10
   confirmHeightPress:
     actionPath: /actions/default/in/ConfirmHeight
     needsReinit: 0
@@ -120,6 +75,11 @@ MonoBehaviour:
   moveValue:
     actionPath: /actions/default/in/TouchPadPosition
     needsReinit: 0
+  sensitivity: 0.05
+  maxSpeed: 3.25
+  moveAccel: 1.35
+  moveDeccel: 0.9
+  jumpHeight: 20.5
   minHeadHeight: 0.85
   maxHeadHeight: 2
   playerStandardHeight: 0
