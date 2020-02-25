@@ -121,6 +121,14 @@ namespace Valve.VR
             }
         }
         
+        public virtual SteamVR_Action_Boolean ConfirmHeight
+        {
+            get
+            {
+                return SteamVR_Actions.default_ConfirmHeight;
+            }
+        }
+        
         public virtual SteamVR_Action_Vibration Haptic
         {
             get
