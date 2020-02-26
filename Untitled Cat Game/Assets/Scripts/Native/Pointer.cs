@@ -53,7 +53,7 @@ public class Pointer : MonoBehaviour
         }
 
         // Displays the dot's enabled texture sometimes after colliding with the button. Might want to check the tag with an or statement here
-        if(hit.collider == null)
+        if(hit.collider == null || hit.collider.tag != "Button")
         {
             dotRenderer.material = disable;
         }

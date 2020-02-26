@@ -6,6 +6,7 @@ public class RotateTowards : MonoBehaviour
 {
     public Camera playerCam;
     public Transform player;
+    public CharacterController playerLocation;
 
     public float turnRate = 3 * Mathf.PI;
 

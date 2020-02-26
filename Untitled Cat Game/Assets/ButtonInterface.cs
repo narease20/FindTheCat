@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ButtonInterface : MonoBehaviour
 {
     public Button button;
-    public Text text;
+    public TextMeshProUGUI text;
 
     [TextArea(3, 5)]
     public string[] newText;
@@ -71,7 +72,10 @@ public class ButtonInterface : MonoBehaviour
             Debug.Log("Text should appear?");
             if(timesInteracted == 0)
             {
-                text.enabled = true;
+                if (!text.enabled)
+                {
+                    text.enabled = true;
+                }
                 StartText();
                 timesInteracted++;
             }
