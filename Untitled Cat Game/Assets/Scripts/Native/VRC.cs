@@ -132,10 +132,12 @@ public class VRC : MonoBehaviour
 
         movement += orintation * (speed * Vector3.forward);
 
+        /*
         if (jumpPress.GetStateDown(SteamVR_Input_Sources.Any))
         {
             movement.y += jumpHeight;
         }
+        */
 
         // Gravity - Said to fall too fast
         movement.y += Physics.gravity.y - Time.deltaTime; //gravity * Time.fixedDeltaTime;

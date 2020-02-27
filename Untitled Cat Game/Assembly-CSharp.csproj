@@ -86,6 +86,7 @@
     <Compile Include="Assets\Scripts\Native\Hand.cs" />
     <Compile Include="Assets\Scripts\Native\Interactable.cs" />
     <Compile Include="Assets\Scripts\Native\Pointer.cs" />
+    <Compile Include="Assets\Scripts\Native\SceneChange.cs" />
     <Compile Include="Assets\Scripts\Native\VRC.cs" />
     <Compile Include="Assets\Scripts\Native\VRControl.cs" />
     <Compile Include="Assets\Scripts\Native\VRController.cs" />
