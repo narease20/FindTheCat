@@ -17,7 +17,8 @@ public class VRC : MonoBehaviour
     public float sensitivity = 0.05f;
 
     private CharacterController characterController = null;
-    private Transform head;
+    [HideInInspector]
+    public Transform head;
 
     [Header("Movement Speed")]
     public float maxSpeed = 3.25f;
@@ -45,8 +46,8 @@ public class VRC : MonoBehaviour
     public float heightReductionAmount = 0.3f;
     [SerializeField, Range(0.1f, 0.95f), Tooltip("The percentage amount under their set height the player has to go to acchive a crouch state.")]
     public float heightPercentageCrouch = 0.9f;
-    [SerializeField, Range(0.1f, 0.95f), Tooltip("The distance checked for an object above the player when they are crouched.")]
-    public float heightMeasureDistance = 0.5f;
+    [SerializeField, Range(0.1f, 1.35f), Tooltip("The distance checked for an object above the player when they are crouched.")]
+    public float heightMeasureDistance = 0.65f;
 
     [Header("Gameplay Data")]
     [Tooltip("Grab Style changes how throwing objects works. True makes it so the player has to press the button again to throw, while false makes the player have to hold down the button to hold the object.")]
@@ -161,13 +162,18 @@ public class VRC : MonoBehaviour
     // When the player presses a button, their normal height is recorded
     void ConfirmHeight()
     {
-        if (confirmHeightPress.GetStateDown(SteamVR_Input_Sources.Any) && characterController.height > minHeadHeight && characterController.height < maxHeadHeight)
+        // Fix this, It clears then resets the height but ends up requiring the player to lower slowly within the crouch range to get a lower height.
+        if (confirmHeightPress.GetStateDown(SteamVR_Input_Sources.Any) && heightSet && head.localPosition.y > heightReductionAmount)
+        {
+            playerStandardHeight = 0;
+            heightSet = false;
+        }
+        if (confirmHeightPress.GetStateDown(SteamVR_Input_Sources.Any) && head.localPosition.y > heightReductionAmount && head.localPosition.y < maxHeadHeight)
         {
             playerStandardHeight = characterController.height;
             heightSet = true;
             Debug.Log("Height Set!");
         }
-
     }
 
     // HEY CHECK IF THIS CAUSES CAMERA TO CLIP THROUGH WALLS AND CELLINGS
@@ -184,12 +190,18 @@ public class VRC : MonoBehaviour
             }
             else
             {
-                characterController.height = headHeight;
+                if (!CheckAbovePlayer())
+                {
+                    characterController.height = headHeight;
+                }
             }
         }
         else
         {
-            characterController.height = headHeight;
+            if (!CheckAbovePlayer())
+            {
+                characterController.height = headHeight;
+            }
         }
     }
 

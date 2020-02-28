@@ -356,6 +356,7 @@ MonoBehaviour:
     actionPath: /actions/default/in/TouchPadPosition
     needsReinit: 0
   sensitivity: 0.05
+  head: {fileID: 0}
   maxSpeed: 3.25
   moveAccel: 1.35
   moveDeccel: 0.9
@@ -363,9 +364,9 @@ MonoBehaviour:
   minHeadHeight: 0.85
   maxHeadHeight: 2
   playerStandardHeight: 0
-  heightReductionAmount: 0.3
+  heightReductionAmount: 0.5
   heightPercentageCrouch: 0.9
-  heightMeasureDistance: 0.3
+  heightMeasureDistance: 0.65
   grabStyle: 1
 --- !u!1 &414537487774363355
 GameObject:
@@ -563,7 +564,7 @@ MonoBehaviour:
   maxGrabTimer: 2.5
   grabTimer: 0
   colliderReappearTime: 0.35
-  droptimer: 0.15
+  droptimer: 0.1
   canDrop: 0
 --- !u!135 &415235135785221748
 SphereCollider:
@@ -767,7 +768,7 @@ MonoBehaviour:
   maxGrabTimer: 2.5
   grabTimer: 0
   colliderReappearTime: 0.35
-  droptimer: 0.15
+  droptimer: 0.1
   canDrop: 0
 --- !u!135 &415235135785317466
 SphereCollider:

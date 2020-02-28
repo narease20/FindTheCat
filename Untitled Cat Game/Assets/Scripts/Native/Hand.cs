@@ -60,7 +60,7 @@ public class Hand : MonoBehaviour
         }
 
         // Grab object if in range
-        if (grabAction.GetStateDown(pose.inputSource))// && grabTimer == 0.0f)
+        if (grabAction.GetStateDown(pose.inputSource))
         {
             Pickup();
             canDrop = false;
