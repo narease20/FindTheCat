@@ -71,13 +71,13 @@ public class Hand : MonoBehaviour
         if (grabAction.GetStateDown(pose.inputSource) && player.grabStyle && currentInteractable && canDrop)
         {
             Drop();
-            StartCoroutine(handColliderRestorer());
+            StartCoroutine(HandColliderRestorer());
         }
 
         if (grabAction.GetStateUp(pose.inputSource) && !player.grabStyle && currentInteractable)
         {
             Drop();
-            StartCoroutine(handColliderRestorer());
+            StartCoroutine(HandColliderRestorer());
         }
 
 
@@ -172,7 +172,7 @@ public class Hand : MonoBehaviour
             // Detach
             joint.connectedBody = null;
 
-            if (!currentInteractable.GetComponent<Collider>().enabled)
+            if (currentInteractable.GetComponent<Collider>() && !currentInteractable.GetComponent<Collider>().enabled)
             {
                 currentInteractable.GetComponent<Collider>().enabled = true;
             }
@@ -213,7 +213,7 @@ public class Hand : MonoBehaviour
     }
 
     // Waits after the object is thrown the puts the player's hand back
-    IEnumerator handColliderRestorer()
+    IEnumerator HandColliderRestorer()
     {
         yield return new WaitForSeconds(colliderReappearTime);
         handCollider.enabled = true;

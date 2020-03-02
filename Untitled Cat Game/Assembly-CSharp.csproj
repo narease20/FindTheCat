@@ -123,6 +123,8 @@
     <Compile Include="Assets\Scripts\Native\BillboardScript.cs" />
     <Compile Include="Assets\Scripts\Native\Hand.cs" />
     <Compile Include="Assets\Scripts\Native\Interactable.cs" />
+    <Compile Include="Assets\Scripts\Native\MeshCombiner.cs" />
+    <Compile Include="Assets\Scripts\Native\ObjCombineT.cs" />
     <Compile Include="Assets\Scripts\Native\Pointer.cs" />
     <Compile Include="Assets\Scripts\Native\SceneChange.cs" />
     <Compile Include="Assets\Scripts\Native\VRC.cs" />
