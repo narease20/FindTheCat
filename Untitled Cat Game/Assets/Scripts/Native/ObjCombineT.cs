@@ -9,6 +9,8 @@ public class ObjCombineT : Interactable
     public Interactable closeFriend;
     public GameObject newFriend;
 
+    public Transform connectionPoint;
+
     public bool FriendSet = false;
 
     // Start is called before the first frame update
@@ -17,7 +19,7 @@ public class ObjCombineT : Interactable
         SphereCollider sp = GetComponent<SphereCollider>();
         sp.isTrigger = true;
         sp.radius += transform.localScale.magnitude;
-        gameObject.GetComponent<Rigidbody>().isKinematic = true;
+        //gameObject.GetComponent<Rigidbody>().isKinematic = true;
     }
 
     public override void Action()
@@ -29,7 +31,11 @@ public class ObjCombineT : Interactable
         {
             Hand holder = activeHand;
             activeHand = null;
-            gameObject.GetComponent<MeshCombiner>().CallMe(newFriend);
+            newFriend.GetComponent<Interactable>().activeHand = null;
+            //gameObject.GetComponent<MeshCombiner>().CallMe(newFriend);
+
+            newFriend.transform.parent = connectionPoint;
+            newFriend.transform.position = connectionPoint.localPosition;
 
             activeHand = holder;
         }

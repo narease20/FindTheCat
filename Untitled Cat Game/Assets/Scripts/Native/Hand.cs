@@ -64,6 +64,7 @@ public class Hand : MonoBehaviour
         {
             Pickup();
             canDrop = false;
+            StopAllCoroutines();
             StartCoroutine(DropTimer());
         }
 
@@ -71,15 +72,16 @@ public class Hand : MonoBehaviour
         if (grabAction.GetStateDown(pose.inputSource) && player.grabStyle && currentInteractable && canDrop)
         {
             Drop();
+            StopAllCoroutines();
             StartCoroutine(HandColliderRestorer());
         }
 
         if (grabAction.GetStateUp(pose.inputSource) && !player.grabStyle && currentInteractable)
         {
             Drop();
+            StopAllCoroutines();
             StartCoroutine(HandColliderRestorer());
         }
-
 
     }
 
@@ -217,6 +219,7 @@ public class Hand : MonoBehaviour
     {
         yield return new WaitForSeconds(colliderReappearTime);
         handCollider.enabled = true;
+        Debug.Log("Hand collider should be " + handCollider.enabled);
     }
 
     // Helps the button press to throw fucntion correctly by forcing the game to wait before automatically letting go of the object
@@ -224,6 +227,7 @@ public class Hand : MonoBehaviour
     {
         yield return new WaitForSeconds(droptimer);
         canDrop = true;
+        Debug.Log("CanDrop is " + canDrop);
     }
 
     // Switchs grab Styles

@@ -62,4 +62,5 @@ public class Interactable : MonoBehaviour
         transform.localPosition = offset;
         transform.SetParent(null);
     }
+
 }

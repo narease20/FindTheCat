@@ -127,6 +127,7 @@
     <Compile Include="Assets\Scripts\Native\ObjCombineT.cs" />
     <Compile Include="Assets\Scripts\Native\Pointer.cs" />
     <Compile Include="Assets\Scripts\Native\SceneChange.cs" />
+    <Compile Include="Assets\Scripts\Native\SceneRecords.cs" />
     <Compile Include="Assets\Scripts\Native\VRC.cs" />
     <Compile Include="Assets\Scripts\Native\VRInputModule.cs" />
     <None Include="Assets\NatureStarterKit2\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />

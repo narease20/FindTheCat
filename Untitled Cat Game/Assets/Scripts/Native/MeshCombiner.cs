@@ -6,10 +6,12 @@ using UnityEngine;
 [RequireComponent(typeof(MeshRenderer))]
 public class MeshCombiner : MonoBehaviour
 {
+    MeshRenderer mr;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        mr = GetComponent<MeshRenderer>();
     }
 
     // Update is called once per frame
@@ -40,6 +42,8 @@ public class MeshCombiner : MonoBehaviour
         mf.mesh.RecalculateBounds();
         mf.mesh.RecalculateNormals();
         mf.mesh.Optimize();
+
+        mr.material = add.GetComponent<MeshRenderer>().material;
 
         gameObject.AddComponent<MeshCollider>();
         gameObject.SetActive(true);
