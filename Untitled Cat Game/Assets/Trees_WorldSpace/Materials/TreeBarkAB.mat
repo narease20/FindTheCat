@@ -4,9 +4,8 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
   m_Name: TreeBarkAB
   m_Shader: {fileID: 4800000, guid: c6b5cd736fa067643949d5a852a5e00b, type: 3}
   m_ShaderKeywords: _EMISSION
@@ -20,7 +19,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Albedo:
-        m_Texture: {fileID: 2800000, guid: 56dadee66d9e1be4eb984e057e1f2f26, type: 3}
+        m_Texture: {fileID: 2800000, guid: ce7f8d752eff4554889a2841119b89ed, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Albedo_MaskA:

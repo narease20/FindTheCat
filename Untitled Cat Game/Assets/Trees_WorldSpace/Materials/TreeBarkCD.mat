@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: TreeBarkCD
   m_Shader: {fileID: 4800000, guid: c6b5cd736fa067643949d5a852a5e00b, type: 3}
-  m_ShaderKeywords: _EMISSION _SWITCHUPDOWN_ON _TOGGLESWITCH0_ON
+  m_ShaderKeywords: _EMISSION _SWITCHUPDOWN_ON
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -76,10 +76,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _AO_power: 0
+    - _AO_power: 0.13
     - _BumpScale: 1
     - _Cutoff: 0.5
-    - _DarknessOnSundown: 0.718
+    - _DarknessOnSundown: 0.814
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _Gloss: 0.25
@@ -94,12 +94,12 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SwitchUpDown: 1
-    - _ToggleSwitch0: 1
+    - _ToggleSwitch0: 0
     - _UVSec: 0
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
-    - _Base_Color: {r: 0.57623196, g: 0, b: 1, a: 1}
+    - _Base_Color: {r: 1, g: 1, b: 1, a: 0}
     - _Base_Color_Tint: {r: 0.8308824, g: 0.79015285, b: 0.7086938, a: 1}
     - _Color: {r: 0.2342801, g: 0.9705882, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
