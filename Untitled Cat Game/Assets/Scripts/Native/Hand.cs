@@ -233,14 +233,7 @@ public class Hand : MonoBehaviour
     // Switchs grab Styles
     public void SwitchStyles()
     {
-        if (player.grabStyle)
-        {
-            player.grabStyle = false;
-        }
-        if (!player.grabStyle)
-        {
-            player.grabStyle = true;
-        }
+        player.SwitchGrabStyles();
     }
 
 }

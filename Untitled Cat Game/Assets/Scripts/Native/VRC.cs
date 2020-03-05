@@ -217,4 +217,17 @@ public class VRC : MonoBehaviour
 
         return false;
     }
+
+    public void SwitchGrabStyles()
+    {
+        if (grabStyle)
+        {
+            grabStyle = false;
+        }
+        if (!grabStyle)
+        {
+            grabStyle = true;
+        }
+    }
+
 }

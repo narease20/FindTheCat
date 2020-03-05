@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 950, y: 544}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -114,7 +114,7 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 494}
   m_MaxSize: {x: 14004, y: 14044}
   vertical: 0
-  controlID: 87
+  controlID: 79
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 494}
   m_MaxSize: {x: 10002, y: 14044}
   vertical: 1
-  controlID: 88
+  controlID: 80
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -164,7 +164,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 222}
   m_MaxSize: {x: 8006, y: 4022}
   vertical: 0
-  controlID: 89
+  controlID: 81
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -306,7 +306,7 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -479326
+  m_LastSelectedObjectID: -47084
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -382,7 +382,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -409,7 +409,7 @@ MonoBehaviour:
   m_defaultScale: 1
   m_TargetTexture: {fileID: 0}
   m_CurrentColorSpace: 1
-  m_LastWindowPixelSize: {x: 2329.5, y: 1318.5}
+  m_LastWindowPixelSize: {x: 1553, y: 879}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
@@ -442,24 +442,24 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: c8f3f9ffaec8faffa67effff6ee7ffffbeedffffeaedffff0ceeffffe8efffffbcf4ffff08faffff20faffff6afaffff9afaffffa4faffffdafaffffe6fafffff0faffff6afbffff90690000
+      scrollPos: {x: 0, y: 50}
+      m_SelectedIDs: e0550000
+      m_LastClickedID: 21984
+      m_ExpandedIDs: 9a45feff94a1feffd25fffffe6f5ffff64f8ffff40560000e6560000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: Mushroom2 (1)
+        m_OriginalName: Mushroom2 (1)
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: -2942
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 8}
       m_SearchString: 
@@ -505,9 +505,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 84.03432, y: -6.867608, z: 20.506739}
+    m_Target: {x: 46.648277, y: 2.0505123, z: 27.408821}
     speed: 2
-    m_Value: {x: 84.03432, y: -6.867608, z: 20.506739}
+    m_Value: {x: 46.648277, y: 2.0505123, z: 27.408821}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -536,13 +536,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: 0.0019552105, y: 0.92650354, z: -0.37640885, w: 0.0046417303}
+    m_Target: {x: 0.08429846, y: -0.00023355878, z: 0.00008950328, w: 0.99644053}
     speed: 2
-    m_Value: {x: 0.0019481326, y: 0.9270125, z: -0.37499657, w: 0.004644384}
+    m_Value: {x: 0.12019164, y: 0.1510457, z: -0.018434249, w: 0.9810196}
   m_Size:
-    m_Target: 306.11093
+    m_Target: 5.02894
     speed: 2
-    m_Value: 292.9291
+    m_Value: 4.72894
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -761,7 +761,7 @@ MonoBehaviour:
     height: 391
   m_ViewDataDictionary: {fileID: 0}
   m_SearchFilter:
-    m_NameFilter: wrath
+    m_NameFilter: 
     m_ClassNames: []
     m_AssetLabels: []
     m_AssetBundleNames: []
@@ -773,20 +773,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Trees_WorldSpace/Prefabs
+    - Assets/Stylized Mushroom/LOD Versions/Prefabs
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Trees_WorldSpace/Prefabs
+  - Assets/Stylized Mushroom/LOD Versions/Prefabs
   m_LastFoldersGridSize: 96
   m_LastProjectPath: D:\Find The Cat Git\FindTheCat\Untitled Cat Game
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 525}
-    m_SelectedIDs: 
-    m_LastClickedID: 0
-    m_ExpandedIDs: 000000005a3b0000fa3c0000e43d0000c23e0000fa3f0000264300006c4400004a45000048460000144700004247000064480000324b0000d84e0000144f00003e50000090500000da500000de50000014510000a451000000ca9a3b
+    scrollPos: {x: 0, y: 329}
+    m_SelectedIDs: e64e0000
+    m_LastClickedID: 20198
+    m_ExpandedIDs: 00000000a43b0000443d00002e3e00004640000094430000da440000d8460000a4470000ec4700000e490000dc4b0000484e0000aa4e0000a04f0000dc4f00000651000058510000a8510000c4510000c8510000fe5100008e52000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -814,7 +814,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000005a3b0000fa3c0000e43d0000fa3f0000264300006c4400004846000064480000324b0000d84e00003e50000090500000da500000de50000014510000a4510000
+    m_ExpandedIDs: 00000000a43b0000443d00002e3e00004640000094430000da440000d8460000a4470000ec4700000e490000dc4b0000484e0000aa4e0000a04f0000dc4f00000651000058510000a8510000c4510000c8510000fe5100008e520000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -842,7 +842,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c62300004e3a0000c051000088350000606a0000a83200009435000064360000903a0000d64a0000424a0000063a0000824a00005e4b0000964d0000a44300002c4b000074330000ce3d0000723300006a500000943e00005e420000e6510000da4200003c520000784900001854000048700000f43e0000e649000000000000
+    m_ExpandedInstanceIDs: c62300004e3a0000c051000088350000606a0000a83200009435000064360000903a0000d64a0000424a0000063a0000824a00005e4b0000964d0000a44300002c4b000074330000ce3d0000723300006a500000943e00005e420000e6510000da4200003c520000784900001854000048700000f43e0000e649000000000000803b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
