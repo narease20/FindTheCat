@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\ButtonInterface.cs" />
+    <Compile Include="Assets\MouseLook.cs" />
     <Compile Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\Antialiasing.cs" />
     <Compile Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\Bloom.cs" />
     <Compile Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\BloomAndFlares.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="Assets\PinwheelFantasyEffect\Script\Fireball.cs" />
     <Compile Include="Assets\PinwheelFantasyEffect\Script\Spin.cs" />
     <Compile Include="Assets\PinwheelFantasyEffect\Script\Test.cs" />
+    <Compile Include="Assets\PlayerMovement.cs" />
     <Compile Include="Assets\RotateTowards.cs" />
     <Compile Include="Assets\Scripts\Downloaded\ActiveStateToggler.cs" />
     <Compile Include="Assets\Scripts\Downloaded\ApplicationManager.cs" />
@@ -120,6 +122,7 @@
     <Compile Include="Assets\Scripts\Downloaded\ShowSliderValue.cs" />
     <Compile Include="Assets\Scripts\Downloaded\TiltWindow.cs" />
     <Compile Include="Assets\Scripts\Native\BillboardScript.cs" />
+    <Compile Include="Assets\Scripts\Native\Controller.cs" />
     <Compile Include="Assets\Scripts\Native\Hand.cs" />
     <Compile Include="Assets\Scripts\Native\Interactable.cs" />
     <Compile Include="Assets\Scripts\Native\MeshCombiner.cs" />
