@@ -224,6 +224,8 @@ GameObject:
   - component: {fileID: 246895833}
   - component: {fileID: 246895832}
   - component: {fileID: 246895834}
+  - component: {fileID: 246895836}
+  - component: {fileID: 246895835}
   m_Layer: 0
   m_Name: FirstPersonPlayer
   m_TagString: Untagged
@@ -289,6 +291,45 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   heightMeasureDistance: 0.65
+--- !u!114 &246895835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 246895831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95b5aec7a132bc0478cf3d7af0b25488, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabAction: Grab
+  touchpadAction: Object Action
+  switchGrabStyle: Jump
+  player: {fileID: 246895834}
+  playerBody: {fileID: 1539381779}
+  grabMode: 1
+  throwVelocity: 5
+  holdLocation: {fileID: 2038168653}
+  maxGrabTimer: 2.5
+  grabTimer: 0
+  colliderReappearTime: 0.35
+  droptimer: 0.35
+  canDrop: 0
+--- !u!136 &246895836
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 246895831}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.65
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.65, z: 0}
 --- !u!1 &432636297
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,7 +378,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &487808970
 Transform:
   m_ObjectHideFlags: 0
@@ -574,6 +615,7 @@ MonoBehaviour:
   weight: 0
   throwable: 0
   activeHand: {fileID: 0}
+  activeFPSHand: {fileID: 0}
   throwPower: 0
   sizeDown: 0
   sizeDownAmount: {x: 0.3, y: 0.3, z: 0.3}
@@ -1358,7 +1400,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1127748509}
   m_Layer: 0
-  m_Name: RightHandHolder
+  m_Name: LeftHandHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2220,6 +2262,7 @@ MonoBehaviour:
   weight: 0
   throwable: 0
   activeHand: {fileID: 0}
+  activeFPSHand: {fileID: 0}
   throwPower: 0
   sizeDown: 0
   sizeDownAmount: {x: 0.3, y: 0.3, z: 0.3}
@@ -2610,6 +2653,7 @@ MonoBehaviour:
   weight: 2
   throwable: 1
   activeHand: {fileID: 0}
+  activeFPSHand: {fileID: 0}
   throwPower: 0
   sizeDown: 1
   sizeDownAmount: {x: 0.3, y: 0.3, z: 0.3}
@@ -2904,7 +2948,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2038168653}
   m_Layer: 0
-  m_Name: LeftHandHolder
+  m_Name: RightHandHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
