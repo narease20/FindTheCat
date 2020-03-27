@@ -10,7 +10,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 regularSize;
     public float charContRegHeight;
 
-    public float speed = 12f, gravity = 9.81f;
+    [SerializeField, Range(-100f, 100f)]
+    public float speed = 3f, gravity = 9.81f;
 
     public Transform groundCheck;
     public float groundDistance = 0.4f;
@@ -19,16 +20,21 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField, Range(0.1f, 1.35f), Tooltip("The distance checked for an object above the player when they are crouched.")]
     public float heightMeasureDistance = 0.5f;
 
-    CapsuleCollider cylinder;
+    CapsuleCollider myBody;
+    CapsuleCollider myRigidBody;
+    public GameObject cylBody;
+    public Transform cameraLoc;
+
+    public GameObject handHolder;
 
     Vector3 velocity;
     bool isGrounded;
 
     private void Start()
     {
-        regularSize = transform.localScale;
+        regularSize = cylBody.transform.localScale;//transform.localScale;
         charContRegHeight = controller.height;
-        //cylinder = GetComponentInChildren<CapsuleCollider>();
+        myRigidBody = GetComponentInChildren<CapsuleCollider>();
     }
 
     // Update is called once per frame
@@ -71,15 +77,19 @@ public class PlayerMovement : MonoBehaviour
 
     void CrouchStart()
     {
-        transform.localScale = crouchAmount;
+        cameraLoc.position = new Vector3(cameraLoc.position.x, cameraLoc.position.y - 0.5f, cameraLoc.position.z);
+        myBody.height = 0.5f;
+        myRigidBody.height = 0.5f;
         controller.Move(new Vector3(0, transform.position.y - crouchAmount.y, 0));
         controller.height = 0.95f;
     }
     void CrouchEnd()
     {
-        transform.localScale = regularSize;
+        cameraLoc.position = new Vector3(cameraLoc.position.x, cameraLoc.position.y + 0.5f, cameraLoc.position.z);
         controller.Move(new Vector3(0, transform.position.y + crouchAmount.y, 0));
         controller.height = charContRegHeight;
+        myBody.height = 1f;
+        myRigidBody.height = 2f;
     }
 
 

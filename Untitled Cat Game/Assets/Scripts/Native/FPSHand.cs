@@ -55,7 +55,7 @@ public class FPSHand : MonoBehaviour
         }
 
         // Grab object if in range
-        if (Input.GetButtonDown(grabAction))
+        if (Input.GetButtonDown(grabAction) && currentInteractable == null)
         {
             Pickup();
             canDrop = false;
@@ -116,6 +116,7 @@ public class FPSHand : MonoBehaviour
         if (currentInteractable && currentInteractable.activeFPSHand)
         {
             currentInteractable.activeFPSHand.Drop();
+            return;
         }
 
         // Grabbed Check
@@ -132,9 +133,9 @@ public class FPSHand : MonoBehaviour
             // Attach
             AssignColRB();
 
-            targetBody.useGravity = false;
-            //joint.connectedBody = targetBody;
+            TargetBodyInitialization();
 
+            //joint.connectedBody = targetBody;
 
             // Set Active Hand
             currentInteractable.activeFPSHand = this;
@@ -164,13 +165,13 @@ public class FPSHand : MonoBehaviour
             }
 
             // Check to see if the object is throwable, else just drop it. Maybe make a public function to provide the player some velocity in the VRC script if the object is a rock wall
-            if (currentInteractable.throwable && currentInteractable.GetComponent<Rigidbody>())
+            if (currentInteractable.throwable && targetBody)
             {
                 // Apply Velocity
                 if(playerBody.velocity.magnitude > throwVelocity)
                 {
-                    targetBody.velocity = playerBody.velocity * currentInteractable.throwPower + transform.forward;
-                    targetBody.angularVelocity = playerBody.angularVelocity * currentInteractable.throwPower + transform.forward;
+                    targetBody.velocity = playerBody.velocity * currentInteractable.throwPower + transform.forward * throwVelocity;
+                    targetBody.angularVelocity = playerBody.angularVelocity * currentInteractable.throwPower + transform.forward * throwVelocity;
                 }
 
                 //targetBody.AddForce(pose.GetVelocity());
@@ -234,5 +235,11 @@ public class FPSHand : MonoBehaviour
     {
         grabbedCollider = currentInteractable.GetComponent<Collider>();
         targetBody = currentInteractable.GetComponent<Rigidbody>();
+    }
+    void TargetBodyInitialization()
+    {
+        targetBody.useGravity = false;
+        targetBody.velocity = new Vector3(0,0,0);
+        targetBody.angularVelocity = new Vector3(0, 0, 0);
     }
 }
