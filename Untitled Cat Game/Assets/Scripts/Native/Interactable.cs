@@ -14,6 +14,8 @@ public class Interactable : MonoBehaviour
     [HideInInspector]
     public Hand activeHand = null;
     [HideInInspector]
+    public FPSHand activeFPSHand = null;
+    [HideInInspector]
     public float throwPower;
 
     [Header("Size Modification")]
@@ -52,7 +54,8 @@ public class Interactable : MonoBehaviour
 
     public virtual void Action()
     {
-        print("Action");
+        Debug.Log("Action");
+        return;
     }
 
     public void ApplyOffset(Transform hand)
