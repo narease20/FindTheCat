@@ -24,6 +24,9 @@ public class Hand : MonoBehaviour
 
     public bool grabMode = true;
 
+    private Collider grabbedCollider;
+    private Rigidbody targetBody;
+
     [Header("Timers")]
 
     [SerializeField, Range(0, 3), Tooltip("The amount of time between a grab with a hand.")]
@@ -114,6 +117,7 @@ public class Hand : MonoBehaviour
         if (currentInteractable && currentInteractable.activeHand)
         {
             currentInteractable.activeHand.Drop();
+            return;
         }
 
         // Grabbed Check
@@ -128,16 +132,19 @@ public class Hand : MonoBehaviour
                 currentInteractable.transform.localScale -= currentInteractable.sizeDownAmount;
             }
 
+            AssignColRB();
+
+            TargetBodyInitialization();
+
             // Attach
-            Rigidbody targetBody = currentInteractable.GetComponent<Rigidbody>();
             joint.connectedBody = targetBody;
 
             // Set Active Hand
             currentInteractable.activeHand = this;
 
-            if(currentInteractable.GetComponent<Collider>())
+            if(grabbedCollider)
             {
-                currentInteractable.GetComponent<Collider>().enabled = false;
+                grabbedCollider.enabled = false;
             }
         }
         else
@@ -161,11 +168,9 @@ public class Hand : MonoBehaviour
             }
 
             // Check to see if the object is throwable, else just drop it. Maybe make a public function to provide the player some velocity in the VRC script if the object is a rock wall
-            if (currentInteractable.throwable && currentInteractable.GetComponent<Rigidbody>())
+            if (currentInteractable.throwable && targetBody)
             {
                 // Apply Velocity
-                Rigidbody targetBody = currentInteractable.GetComponent<Rigidbody>();
-
                 targetBody.velocity = pose.GetVelocity() * currentInteractable.throwPower + transform.forward;
                 targetBody.angularVelocity = pose.GetAngularVelocity() * currentInteractable.throwPower + transform.forward;
                 //targetBody.AddForce(pose.GetVelocity());
@@ -174,9 +179,9 @@ public class Hand : MonoBehaviour
             // Detach
             joint.connectedBody = null;
 
-            if (currentInteractable.GetComponent<Collider>() && !currentInteractable.GetComponent<Collider>().enabled)
+            if (grabbedCollider && !grabbedCollider.enabled)
             {
-                currentInteractable.GetComponent<Collider>().enabled = true;
+                grabbedCollider.enabled = true;
             }
 
             // Clear Variables
@@ -235,5 +240,15 @@ public class Hand : MonoBehaviour
     {
         player.SwitchGrabStyles();
     }
-
+    void AssignColRB()
+    {
+        grabbedCollider = currentInteractable.GetComponent<Collider>();
+        targetBody = currentInteractable.GetComponent<Rigidbody>();
+    }
+    void TargetBodyInitialization()
+    {
+        targetBody.useGravity = false;
+        targetBody.velocity = new Vector3(0,0,0);
+        targetBody.angularVelocity = new Vector3(0, 0, 0);
+    }
 }
