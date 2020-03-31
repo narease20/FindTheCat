@@ -80,6 +80,7 @@ public class PlayerMovement : MonoBehaviour
         cameraLoc.position = new Vector3(cameraLoc.position.x, cameraLoc.position.y - 0.5f, cameraLoc.position.z);
         myBody.height = 0.5f;
         myRigidBody.height = 0.5f;
+        cylBody.transform.localScale = new Vector3(regularSize.x, regularSize.y - 0.5f, regularSize.z);
         controller.Move(new Vector3(0, transform.position.y - crouchAmount.y, 0));
         controller.height = 0.95f;
     }
@@ -88,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
         cameraLoc.position = new Vector3(cameraLoc.position.x, cameraLoc.position.y + 0.5f, cameraLoc.position.z);
         controller.Move(new Vector3(0, transform.position.y + crouchAmount.y, 0));
         controller.height = charContRegHeight;
+        cylBody.transform.localScale = regularSize;
         myBody.height = 1f;
         myRigidBody.height = 2f;
     }
