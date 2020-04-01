@@ -80,7 +80,6 @@
     <Compile Include="Assets\PinwheelFantasyEffect\Script\Editor\CompileLogger.cs" />
     <Compile Include="Assets\PinwheelFantasyEffect\Script\Editor\PolarisV2AdsWindow.cs" />
     <Reference Include="UnityEditor.TestRunner">
-<<<<<<< HEAD
       <HintPath>C:/Users/nance/Documents/GitHub/FindTheCat/Untitled Cat Game/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TestRunner">
@@ -151,78 +150,6 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>C:/Users/nance/Documents/GitHub/FindTheCat/Untitled Cat Game/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-=======
-      <HintPath>C:/Users/Isaiah C/Documents/GitHub/FindTheCat/Untitled Cat Game/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.TestRunner">
-      <HintPath>C:/Users/Isaiah C/Documents/GitHub/FindTheCat/Untitled Cat Game/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/Users/Isaiah C/Documents/GitHub/FindTheCat/Untitled Cat Game/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Cinemachine">
-      <HintPath>C:/Users/Isaiah C/Documents/GitHub/FindTheCat/Untitled Cat Game/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/Users/Isaiah C/Documents/GitHub/FindTheCat/Untitled Cat Game/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.Editor">
-      <HintPath>C:/Users/Isaiah C/Documents/GitHub/FindTheCat/Untitled Cat Game/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
-      <HintPath>C:/Users/Isaiah C/Documents/GitHub/FindTheCat/Untitled Cat Game/Library/ScriptAssemblies/Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.Runtime">
-      <HintPath>C:/Users/Isaiah C/Documents/GitHub/FindTheCat/Untitled Cat Game/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/Isaiah C/Documents/GitHub/FindTheCat/Untitled Cat Game/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Lightweight.Runtime">
-      <HintPath>C:/Users/Isaiah C/Documents/GitHub/FindTheCat/Untitled Cat Game/Library/ScriptAssemblies/Unity.RenderPipelines.Lightweight.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Lightweight.Editor">
-      <HintPath>C:/Users/Isaiah C/Documents/GitHub/FindTheCat/Untitled Cat Game/Library/ScriptAssemblies/Unity.RenderPipelines.Lightweight.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/Isaiah C/Documents/GitHub/FindTheCat/Untitled Cat Game/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Timeline">
-      <HintPath>C:/Users/Isaiah C/Documents/GitHub/FindTheCat/Untitled Cat Game/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/Isaiah C/Documents/GitHub/FindTheCat/Untitled Cat Game/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Postprocessing.Editor">
-      <HintPath>C:/Users/Isaiah C/Documents/GitHub/FindTheCat/Untitled Cat Game/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/Users/Isaiah C/Documents/GitHub/FindTheCat/Untitled Cat Game/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
-      <HintPath>C:/Users/Isaiah C/Documents/GitHub/FindTheCat/Untitled Cat Game/Library/ScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Postprocessing.Runtime">
-      <HintPath>C:/Users/Isaiah C/Documents/GitHub/FindTheCat/Untitled Cat Game/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="com.unity.cinemachine.editor">
-      <HintPath>C:/Users/Isaiah C/Documents/GitHub/FindTheCat/Untitled Cat Game/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ProBuilder.AddOns.Editor">
-      <HintPath>C:/Users/Isaiah C/Documents/GitHub/FindTheCat/Untitled Cat Game/Library/ScriptAssemblies/Unity.ProBuilder.AddOns.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ShaderGraph.Editor">
-      <HintPath>C:/Users/Isaiah C/Documents/GitHub/FindTheCat/Untitled Cat Game/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
-      <HintPath>C:/Users/Isaiah C/Documents/GitHub/FindTheCat/Untitled Cat Game/Library/ScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/Isaiah C/Documents/GitHub/FindTheCat/Untitled Cat Game/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/Isaiah C/Documents/GitHub/FindTheCat/Untitled Cat Game/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
->>>>>>> parent of 4c0fe544... Touched up Wrath's follow code
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -414,17 +341,10 @@
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="Valve.Newtonsoft.Json">
-<<<<<<< HEAD
       <HintPath>C:/Users/nance/Documents/GitHub/FindTheCat/Untitled Cat Game/Assets/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>C:/Users/nance/Documents/GitHub/FindTheCat/Untitled Cat Game/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
-=======
-      <HintPath>C:/Users/Isaiah C/Documents/GitHub/FindTheCat/Untitled Cat Game/Assets/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>C:/Users/Isaiah C/Documents/GitHub/FindTheCat/Untitled Cat Game/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
->>>>>>> parent of 4c0fe544... Touched up Wrath's follow code
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
