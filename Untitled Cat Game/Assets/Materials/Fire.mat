@@ -75,11 +75,11 @@ Material:
     - _DetailNormalMapScale: 1
     - _Distort: 0.595
     - _DstBlend: 0
-    - _Edge: 0.32
+    - _Edge: 0.34
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Hard: 1.5
+    - _Hard: 31.2
     - _Height: 0.59
     - _Metallic: 0
     - _Mode: 0
@@ -95,8 +95,8 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorA: {r: 1, g: 0.6679427, b: 0, a: 1}
-    - _ColorB: {r: 0, g: 0.8936983, b: 0.9150943, a: 1}
+    - _ColorA: {r: 0.52652186, g: 0.5564501, b: 0.6415094, a: 1}
+    - _ColorB: {r: 0.53941554, g: 0.5325739, b: 0.8301887, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _TintA: {r: 0.5377358, g: 0.17208546, b: 0, a: 1}
-    - _TintB: {r: 0, g: 1, b: 0.9717827, a: 1}
+    - _TintA: {r: 0.19081523, g: 0.20603108, b: 0.6320754, a: 1}
+    - _TintB: {r: 0.5849056, g: 0.594711, b: 1, a: 1}
