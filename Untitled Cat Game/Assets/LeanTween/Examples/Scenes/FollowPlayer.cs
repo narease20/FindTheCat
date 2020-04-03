@@ -9,11 +9,14 @@ public class FollowPlayer : MonoBehaviour
     [SerializeField, Range(0.1f, 10f)]
     public float mSpeed = 5.0f;
 
-    public bool following = true;
-    public SphereCollider burnRange;
+    public bool following = true, focusedWall = false;
+    //public SphereCollider burnRange;
     [SerializeField, Range(0.1f, 10f)]
-    public float burnTimer;
+    public float burnTimer = 5f, followWaitTimer = 1f;
+    [SerializeField, Range(0.1f, 10f)]
+    public float minBurnDistance = 1f, maxBurnDistance = 5f;
     public FireWall closestFireWall;
+    public FireWall affectedFireWall;
 
     // make a constant for wrath to stop at a certain distance
     public float EPSILON = 1.0f;
@@ -31,7 +34,7 @@ public class FollowPlayer : MonoBehaviour
         {
             FollowTarget();
         }
-
+        BushFinder();
     }
 
     public void FollowTarget()
@@ -52,43 +55,76 @@ public class FollowPlayer : MonoBehaviour
             transform.Translate(0.0f, 0.0f, mSpeed * Time.deltaTime);
     }
 
-    /* Doesnt Work
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "FireWall")
-        {
-            closestFireWall = other.GetComponent<FireWall>();
-            Debug.Log("Got a wall");
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (closestFireWall && !(other.gameObject.tag == "FireWall"))
-        {
-            closestFireWall = null;
-            Debug.Log("removed a wall");
-        }
-    }
-    */
-
     public void BushFinder()
     {
-        following = false;
-        // Check around for bush then call its function to destory it.
-        StopAllCoroutines();
-        StartCoroutine(WallWait());
-        if (closestFireWall)
+        affectedFireWall = ClosestFireWall();
+        if (affectedFireWall)
         {
-            closestFireWall.DestroyMe();
+            following = false;
+            StopAllCoroutines();
+            StartCoroutine(WallWait());
+            BushDestroyer();
+            return;
         }
-
-        following = true;
     }
 
     IEnumerator WallWait()
     {
+        focusedWall = true;
         transform.LookAt(new Vector3(closestFireWall.transform.position.x, 0, closestFireWall.transform.position.z), Vector3.up);
         yield return new WaitForSeconds(burnTimer);
-        //transform.LookAt(new Vector3(closestFireWall.transform.position.x, 0, closestFireWall.transform.position.z), Vector3.up);
+    }
+
+    void BushDestroyer()
+    {
+        if (affectedFireWall && affectedFireWall.canBeBurned)
+        {
+            affectedFireWall.DestroyMe();
+            focusedWall = false;
+            closestFireWall = null;
+            affectedFireWall = null;
+            StartCoroutine(TargetTimer());
+        }
+    }
+
+    private FireWall ClosestFireWall()
+    {
+        FireWall nearest = null;
+        float distance;
+
+        if (closestFireWall != null)
+        {
+            distance = Vector3.Distance(transform.position, closestFireWall.transform.position);
+            
+            if(distance >= minBurnDistance && distance <= maxBurnDistance)
+            {
+                nearest = closestFireWall;
+            }
+
+            return nearest;
+        }
+
+        return null;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.GetComponent<FireWall>())
+        {
+            closestFireWall = other.gameObject.GetComponent<FireWall>();
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (closestFireWall)
+        {
+            closestFireWall = null;
+        }
+    }
+    
+    IEnumerator TargetTimer()
+    {
+        yield return new WaitForSeconds(followWaitTimer);
+        following = true;
     }
 }
