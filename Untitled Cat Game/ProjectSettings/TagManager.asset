@@ -8,6 +8,7 @@ TagManager:
   - projectile
   - FxTemporaire
   - Button
+  - FireWall
   layers:
   - Default
   - TransparentFX
