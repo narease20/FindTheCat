@@ -12,7 +12,7 @@ public class FireWall : MonoBehaviour
     public ParticleSystem spawnFire;
 
     [SerializeField, Range(0.1f, 5f)]
-    public float burnTime = 2f;
+    public float burnTime = 5f;
 
     //X: 92.93 Y: 1.09 Z: 111.74
 

@@ -8,6 +8,7 @@ public class ButtonInterface : MonoBehaviour
 {
     public Button button;
     public TextMeshProUGUI text;
+    public BoxCollider inputBox;
 
     [TextArea(3, 5)]
     public string[] newText;
@@ -46,6 +47,8 @@ public class ButtonInterface : MonoBehaviour
             return;
         }
         string sentence = sentences.Dequeue();
+        // Isaiah, the disabler is here!
+        inputBox.enabled = false;
         StopAllCoroutines();
         StartCoroutine(DisplaySentence(sentence));
     }
@@ -58,6 +61,8 @@ public class ButtonInterface : MonoBehaviour
             text.text += letter;
             yield return null;
         }
+        // Isaiah, the inabler is here!
+        inputBox.enabled = true;
     }
 
     public void Clear()
