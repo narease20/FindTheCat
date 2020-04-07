@@ -28,6 +28,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Cat_all_mat.001
+    second: {fileID: 2100000, guid: 9dae327a5f312f8429ca3479a5408d43, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Material
     second: {fileID: 2100000, guid: d010a50670352f64d9d3d107f05efc33, type: 2}
   materials:
