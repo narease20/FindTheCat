@@ -37,13 +37,20 @@ public class CatManager : MonoBehaviour
     {
         if (followingPath)
         {
+            if (anim.GetBool("isSitting"))
+            {
+                anim.SetBool("isSitting", false);
+                anim.SetBool("isWalking", true);
+            }
+
             parentObject.position = dollyCart.transform.position;
             parentObject.rotation = dollyCart.transform.rotation;
         }
-        if(dollyCart.m_Position == beginningTrack.PathLength)
+        if(dollyCart.m_Position == beginningTrack.MaxPos)
         {
             followingPath = false;
             parentObject.parent = null;
+            anim.SetBool("isSitting", true);
         }
     }
 }
