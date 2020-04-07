@@ -9,6 +9,9 @@ public class SceneRecords : MonoBehaviour
     [SerializeField, Range(1, 3)]
     public float transitionTime = 1f;
 
+    public Material nonActiveCrystal;
+    public Material activeCrystal;
+
     //Probably want to put some sort of player data management here
 
     // Update is called once per frame

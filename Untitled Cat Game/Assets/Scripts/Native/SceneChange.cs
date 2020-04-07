@@ -18,6 +18,8 @@ public class SceneChange : MonoBehaviour
     public MeshCollider cc;
     [HideInInspector]
     public SceneRecords recorder;
+    [HideInInspector]
+    private MeshRenderer myMesh;
 
     private void Start()
     {
@@ -26,6 +28,16 @@ public class SceneChange : MonoBehaviour
         cc.isTrigger = true;
 
         recorder = FindObjectOfType<SceneRecords>();
+
+        myMesh = GetComponent<MeshRenderer>();
+        if (!canTransferScenes)
+        {
+            myMesh.material = recorder.nonActiveCrystal;
+        }
+        if (canTransferScenes)
+        {
+            myMesh.material = recorder.activeCrystal;
+        }
 
         //recorder = GetComponent<SceneRecords>();
     }
