@@ -19,4 +19,10 @@ public class SceneRecords : MonoBehaviour
     {
         
     }
+
+    public void ParticleMaker(ParticleSystem particleToMake, Transform placement, float timeBeforeDelete)
+    {
+        Instantiate(particleToMake, placement.position, placement.rotation);
+        Destroy(particleToMake, timeBeforeDelete);
+    }
 }
