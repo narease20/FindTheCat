@@ -17,6 +17,11 @@ public class ButtonInterface : MonoBehaviour
 
     public int timesInteracted = 0;
 
+    private void Awake()
+    {
+        inputBox = this.GetComponent<BoxCollider>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,7 +53,7 @@ public class ButtonInterface : MonoBehaviour
         }
         string sentence = sentences.Dequeue();
         // Isaiah, the disabler is here!
-        inputBox.enabled = false;
+        //inputBox.enabled = false;
         StopAllCoroutines();
         StartCoroutine(DisplaySentence(sentence));
     }
@@ -62,7 +67,7 @@ public class ButtonInterface : MonoBehaviour
             yield return null;
         }
         // Isaiah, the inabler is here!
-        inputBox.enabled = true;
+        //inputBox.enabled = true;
     }
 
     public void Clear()
