@@ -168,13 +168,15 @@ public class Hand : MonoBehaviour
             }
 
             // Check to see if the object is throwable, else just drop it. Maybe make a public function to provide the player some velocity in the VRC script if the object is a rock wall
-            if (currentInteractable.throwable && targetBody)
+            if (currentInteractable.throwable)
             {
                 // Apply Velocity
                 targetBody.velocity = pose.GetVelocity() * currentInteractable.throwPower + transform.forward;
                 targetBody.angularVelocity = pose.GetAngularVelocity() * currentInteractable.throwPower + transform.forward;
                 //targetBody.AddForce(pose.GetVelocity());
             }
+
+            targetBody.useGravity = true;
 
             // Detach
             joint.connectedBody = null;
