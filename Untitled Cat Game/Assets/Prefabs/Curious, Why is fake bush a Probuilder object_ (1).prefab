@@ -108,12 +108,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeBurned: 1
-  fireBox: {fileID: 0}
+  fireBox: {fileID: 1784965300404617290}
   fireBoxYPos: 0
-  fireBoxOffset: 0
+  fireBoxOffset: -3
   myMaterial: {fileID: 2100000, guid: cd52def37d631334dbdebbf38121f799, type: 2}
   spawnFire: {fileID: 19878312, guid: c58b527866ea74d489b8e0a974c8823e, type: 3}
-  deadBush: {fileID: 0}
+  deadBush: {fileID: 7989089764901081177, guid: 3e8bb63275953694f80feb7e6b87a2a2,
+    type: 3}
   burnTime: 5
 --- !u!54 &1784965299753057370
 Rigidbody:
@@ -144,12 +145,12 @@ GameObject:
   - component: {fileID: 1784965300404617287}
   - component: {fileID: 1784965300404617288}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: Flame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1784965300404617289
 Transform:
   m_ObjectHideFlags: 0
@@ -159,7 +160,7 @@ Transform:
   m_GameObject: {fileID: 1784965300404617290}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.01, y: 1.01, z: 1.01}
   m_Children: []
   m_Father: {fileID: 1784965299753057365}
   m_RootOrder: 0

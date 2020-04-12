@@ -24,5 +24,12 @@ public class SceneRecords : MonoBehaviour
     {
         Instantiate(particleToMake, placement.position, placement.rotation);
         Destroy(particleToMake, timeBeforeDelete);
+        return;
+    }
+    public void ParticleMaker(GameObject particleToMake, Transform placement, float timeBeforeDelete)
+    {
+        Instantiate(particleToMake, placement.position, placement.rotation);
+        Destroy(particleToMake, timeBeforeDelete);
+        return;
     }
 }

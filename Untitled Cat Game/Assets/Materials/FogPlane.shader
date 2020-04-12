@@ -1,6 +1,4 @@
 ﻿Shader "Unlit/FogPlane"
-
-// from MinionsArt Pastebin
 {
 	Properties
 	{

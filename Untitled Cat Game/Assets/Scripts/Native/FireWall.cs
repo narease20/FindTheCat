@@ -16,7 +16,7 @@ public class FireWall : MonoBehaviour
 
     public Material myMaterial;
     public ParticleSystem spawnFire;
-    public ParticleSystem deadBush;
+    public GameObject deadBush;
 
     [SerializeField, Range(0.1f, 10f)]
     public float burnTime = 5f;
@@ -60,10 +60,10 @@ public class FireWall : MonoBehaviour
 
     IEnumerator FinalBurn()
     {
-        yield return new WaitForSeconds(burnTime);
-        gameObject.SetActive(false);
         //SceneRecords SR = GetComponent<SceneRecords>();
         //SR.ParticleMaker(deadBush, gameObject.transform, burnTime);
+        yield return new WaitForSeconds(burnTime);
+        gameObject.SetActive(false);
         myMaterial.color = Color.red;
         //Destroy(spawnFire, 1);
         //Destory(this);
