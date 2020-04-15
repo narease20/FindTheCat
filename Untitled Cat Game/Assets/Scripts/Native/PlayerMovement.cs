@@ -29,9 +29,14 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 velocity;
     bool isGrounded;
+    bool isCrouching = false;
+    public float crouchTimer;
+    float maxCrouchTime = 0.75f;
 
     private void Start()
     {
+        Mathf.Clamp(crouchTimer, 0, maxCrouchTime);
+        myBody = GetComponent<CapsuleCollider>();
         regularSize = cylBody.transform.localScale;//transform.localScale;
         charContRegHeight = controller.height;
         myRigidBody = GetComponentInChildren<CapsuleCollider>();
@@ -40,19 +45,46 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawRay(new Vector3(transform.localPosition.x, controller.height + transform.localPosition.y - crouchAmount.y, transform.localPosition.z), transform.TransformDirection(Vector3.up) * heightMeasureDistance, Color.black);
-        if (Input.GetButtonDown("Crouch"))
+        Debug.DrawRay(new Vector3(transform.localPosition.x, controller.height + transform.localPosition.y + crouchAmount.y, transform.localPosition.z), transform.TransformDirection(Vector3.up) * heightMeasureDistance, Color.black);
+
+        CrouchHandler();
+        Movement();
+
+        if (!CheckAbovePlayer() && isCrouching)
         {
-            CrouchStart();
+            if (crouchTimer < maxCrouchTime)
+            {
+                crouchTimer += Time.deltaTime;
+            }
+            if (crouchTimer == maxCrouchTime)
+            {
+                CrouchEnd();
+                isCrouching = false;
+                crouchTimer = 0;
+            }
         }
-        // If under an object and let go of crouch player forced to stay in crouch until they press the button again
-        if (Input.GetButtonUp("Crouch") && !CheckAbovePlayer())
+        if (!isCrouching && crouchTimer != 0)
         {
-            //transform.position = new Vector3(transform.position.x, transform.position.y + 1000, transform.position.z);
+            crouchTimer = 0;
+        }
+        /*
+        if (crouchTimer < maxCrouchTime && !CheckAbovePlayer() && isCrouching)
+        {
+            crouchTimer += Time.deltaTime;
+        }
+        if (crouchTimer == maxCrouchTime && !CheckAbovePlayer() && isCrouching)
+        {
             CrouchEnd();
+            isCrouching = false;
+            crouchTimer = 0;
         }
 
-        Movement();
+        if (!CheckAbovePlayer() && isCrouching)
+        {
+            CrouchEnd();
+            isCrouching = false;
+        }
+        */
     }
 
     void Movement()
@@ -75,33 +107,52 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
     }
 
+    void CrouchHandler()
+    {
+        if (Input.GetButtonDown("Crouch") && !isCrouching && isGrounded)
+        {
+            CrouchStart();
+            isCrouching = true;
+        }
+        // If under an object and let go of crouch player forced to stay in crouch until they press the button again
+        if (Input.GetButtonUp("Crouch") && !CheckAbovePlayer() && isCrouching && isGrounded)
+        {
+            //transform.position = new Vector3(transform.position.x, transform.position.y + 1000, transform.position.z);
+            CrouchEnd();
+            isCrouching = false;
+        }
+    }
+
+
     void CrouchStart()
     {
-        cameraLoc.position = new Vector3(cameraLoc.position.x, cameraLoc.position.y - 0.5f, cameraLoc.position.z);
-        myBody.height = 0.5f;
-        myRigidBody.height = 0.5f;
-        cylBody.transform.localScale = new Vector3(regularSize.x, regularSize.y - 0.5f, regularSize.z);
+        //cameraLoc.position = new Vector3(cameraLoc.position.x, cameraLoc.position.y - 0.5f, cameraLoc.position.z);
+        //myBody.height = 0.5f;
+        //myRigidBody.height = 0.5f;
+        //cylBody.transform.localScale = new Vector3(regularSize.x, regularSize.y - 0.5f, regularSize.z);
+        controller.height = 0.50f;
         controller.Move(new Vector3(0, transform.position.y - crouchAmount.y, 0));
-        controller.height = 0.95f;
+        return;
     }
     void CrouchEnd()
     {
-        cameraLoc.position = new Vector3(cameraLoc.position.x, cameraLoc.position.y + 0.5f, cameraLoc.position.z);
-        controller.Move(new Vector3(0, transform.position.y + crouchAmount.y, 0));
+        //cameraLoc.position = new Vector3(cameraLoc.position.x, cameraLoc.position.y + 0.5f, cameraLoc.position.z);
+        //myBody.height = 1f;
+        //myRigidBody.height = 2f;
+        //cylBody.transform.localScale = regularSize;
+        controller.Move(new Vector3(0, transform.position.y + controller.center.y, 0));
         controller.height = charContRegHeight;
-        cylBody.transform.localScale = regularSize;
-        myBody.height = 1f;
-        myRigidBody.height = 2f;
+        return;
     }
 
 
     bool CheckAbovePlayer()
     {
         RaycastHit hit;
-        if (Physics.Raycast(new Vector3(transform.localPosition.x, controller.height + transform.localPosition.y - crouchAmount.y, transform.localPosition.z), transform.TransformDirection(Vector3.up), out hit, heightMeasureDistance))//Physics.Raycast(characterController.transform.position, transform.TransformDirection(Vector3.up), out hit, heightMeasureDistance))
+        if (Physics.Raycast(new Vector3(transform.localPosition.x, transform.localPosition.y + controller.center.y + crouchAmount.y, transform.localPosition.z), transform.TransformDirection(Vector3.up), out hit, heightMeasureDistance))//Physics.Raycast(characterController.transform.position, transform.TransformDirection(Vector3.up), out hit, heightMeasureDistance))
         {
             //Debug.DrawRay(characterController.transform.position, transform.TransformDirection(Vector3.up) * hit.distance, Color.black);
-            Debug.DrawRay(new Vector3(transform.localPosition.x, controller.height + transform.localPosition.y - crouchAmount.y, transform.localPosition.z), transform.TransformDirection(Vector3.up) * heightMeasureDistance, Color.green);
+            Debug.DrawRay(new Vector3(transform.localPosition.x, transform.localPosition.y + controller.center.y + crouchAmount.y, transform.localPosition.z), transform.TransformDirection(Vector3.up) * heightMeasureDistance, Color.red);
             return true;
         }
 

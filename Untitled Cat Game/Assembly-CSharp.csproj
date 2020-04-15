@@ -142,6 +142,7 @@
     <Compile Include="Assets\PinwheelFantasyEffect\Script\Fireball.cs" />
     <Compile Include="Assets\PinwheelFantasyEffect\Script\Spin.cs" />
     <Compile Include="Assets\PinwheelFantasyEffect\Script\Test.cs" />
+    <Compile Include="Assets\PointerFPS.cs" />
     <Compile Include="Assets\Scripts\Downloaded\ActiveStateToggler.cs" />
     <Compile Include="Assets\Scripts\Downloaded\ApplicationManager.cs" />
     <Compile Include="Assets\Scripts\Downloaded\ChangeColor.cs" />
