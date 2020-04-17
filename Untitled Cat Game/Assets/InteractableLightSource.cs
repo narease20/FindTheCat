@@ -13,9 +13,9 @@ public class InteractableLightSource : Interactable
     public float powerMultiply = 2;
     [Tooltip("How long does the light last"), Range(.05f, 5f)]
     public float powerTime = 2;
-    public float poweredLightRange;
-    public float poweredLightIntensity;
-    //bool currentlyPowered = false;
+    float poweredLightRange;
+    float poweredLightIntensity;
+    bool currentlyPowered = false;
 
     public Material fog;
     public float fBase;
@@ -63,8 +63,10 @@ public class InteractableLightSource : Interactable
 
     public override void Action()
     {
-        StartCoroutine(LightTimer());
-        //Debug.Log("HEY DOM");
+        if (!currentlyPowered)
+        {
+            StartCoroutine(LightTimer());
+        }
         return;
     }
 
@@ -74,9 +76,9 @@ public class InteractableLightSource : Interactable
         fog.SetFloat("_Strength", fReduction);
         lightSource.range = poweredLightRange;
         lightSource.intensity = poweredLightIntensity;
-        //currentlyPowered = true;
+        currentlyPowered = true;
         yield return new WaitForSeconds(powerTime);
-        //currentlyPowered = false;
+        currentlyPowered = false;
         lightSource.range = lightRange;
         lightSource.intensity = lightIntensity;
         fog.SetFloat("_Strength", fBase);
