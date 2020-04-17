@@ -60,8 +60,8 @@ public class FireWall : MonoBehaviour
 
     IEnumerator FinalBurn()
     {
-        //SceneRecords SR = GetComponent<SceneRecords>();
-        //SR.ParticleMaker(deadBush, gameObject.transform, burnTime);
+        SceneRecords SR = GetComponent<SceneRecords>();
+        SR.ParticleMaker(deadBush, gameObject.transform, burnTime);
         yield return new WaitForSeconds(burnTime);
         gameObject.SetActive(false);
         myMaterial.color = Color.red;
