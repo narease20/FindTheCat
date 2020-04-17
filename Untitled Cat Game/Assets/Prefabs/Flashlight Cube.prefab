@@ -13,9 +13,8 @@ GameObject:
   - component: {fileID: 5061149055029495008}
   - component: {fileID: 5061149055029495007}
   - component: {fileID: 5061149055029495006}
-  - component: {fileID: 5061149055029495005}
-  - component: {fileID: -3550119230149568376}
   - component: {fileID: 5061149055029495004}
+  - component: {fileID: -3550119230149568376}
   m_Layer: 0
   m_Name: Flashlight Cube
   m_TagString: Untagged
@@ -112,46 +111,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5061149055029495005
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5061149055029495003}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 349ac733d4a3ccf4a8b811b03cad8dbe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: {x: 0, y: 0, z: 0}
-  weight: 2
-  throwable: 1
-  activeHand: {fileID: 0}
-  activeFPSHand: {fileID: 0}
-  throwPower: 0
-  sizeDown: 1
-  sizeDownAmount: {x: 0.3, y: 0.3, z: 0.3}
---- !u!114 &-3550119230149568376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5061149055029495003}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39c94f87da6adcc4eb2891cfda9d1a4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: {x: 0, y: 0, z: 0}
-  weight: 2
-  throwable: 1
-  activeHand: {fileID: 0}
-  activeFPSHand: {fileID: 0}
-  throwPower: 0
-  sizeDown: 1
-  sizeDownAmount: {x: 0.3, y: 0.3, z: 0.3}
 --- !u!108 &5061149055029495004
 Light:
   m_ObjectHideFlags: 0
@@ -212,3 +171,33 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &-3550119230149568376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5061149055029495003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39c94f87da6adcc4eb2891cfda9d1a4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: {x: 0, y: 0, z: 0}
+  weight: 2
+  throwable: 1
+  activeHand: {fileID: 0}
+  activeFPSHand: {fileID: 0}
+  throwPower: 0
+  sizeDown: 1
+  sizeDownAmount: {x: 0.3, y: 0.3, z: 0.3}
+  lightSource: {fileID: 5061149055029495004}
+  lightRange: 6
+  lightIntensity: 2
+  powerMultiply: 2
+  powerTime: 2
+  poweredLightRange: 0
+  poweredLightIntensity: 0
+  fog: {fileID: 2100000, guid: 1a71e757c9786f543bac7a970d8e5ab0, type: 2}
+  fBase: 0
+  fReduction: 0.02
