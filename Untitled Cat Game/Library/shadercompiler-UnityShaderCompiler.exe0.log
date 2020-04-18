@@ -1,2 +1,20 @@
-Base path: 'C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data', plugins path 'C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/PlaybackEngines'
+Base path: 'C:/Program Files/2019.2.6f1/Editor/Data', plugins path 'C:/Program Files/2019.2.6f1/Editor/Data/PlaybackEngines'
 Cmd: initializeCompiler
+Cmd: preprocess
+  insize=1474 outsize=336 ok=1
+Cmd: preprocess
+  insize=843 outsize=843 ok=1
+Cmd: preprocess
+  insize=26207 outsize=4471 ok=1
+Cmd: preprocess
+  insize=23790 outsize=15088 ok=1
+Cmd: preprocess
+  insize=1475 outsize=337 ok=1
+Cmd: preprocess
+  insize=7745 outsize=7172 ok=1
+Cmd: preprocess
+  insize=43987 outsize=9550 ok=1
+Cmd: compileSnippet
+  error: 2 plat 4 at (627): undeclared identifier 'attenuation'\nCompiling Vertex program with UNITY_PASS_META SHADOWS_DEPTH LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF
+Platform defines: UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR
+  api=4 type=0 insize=6909 outsize=0 kw=UNITY_PASS_META SHADOWS_DEPTH LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=0

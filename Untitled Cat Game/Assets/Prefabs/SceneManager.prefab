@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1029978656
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1029978657}
+  m_Layer: 0
+  m_Name: StartLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1029978657
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029978656}
+  m_LocalRotation: {x: -0, y: -0.99876255, z: -0, w: 0.049732964}
+  m_LocalPosition: {x: 98, y: 0.8, z: 129.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 717456056535789742}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: -174.29901, z: 0}
 --- !u!1 &717456054802154434
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,6 +265,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 717456054802154463}
+  - {fileID: 1029978657}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -254,6 +285,20 @@ MonoBehaviour:
   transitionTime: 1
   nonActiveCrystal: {fileID: 2100000, guid: c737ad2095ac9df41bbacf04a32291fd, type: 2}
   activeCrystal: {fileID: 2100000, guid: c94b2f3ee730b184693a49d538fbd2f2, type: 2}
+  fog: {fileID: 0}
+  nameSceneFog: 
+  distanceFromPlayer: 5
+  areaSpecificObject: {fileID: 0}
+  playerCam: {fileID: 0}
+  deadBush: {fileID: 7989089764901081177, guid: 3e8bb63275953694f80feb7e6b87a2a2,
+    type: 3}
+  vrPlayer: {fileID: 181784736268531232, guid: 63be07ef09ba34c44a799a09d02406de, type: 3}
+  fpsPlayer: {fileID: 8661668878033916295, guid: a168c98fbb446264cbeaa0d16758f5d9,
+    type: 3}
+  timeBetweenChecks: 120
+  startLocation: {fileID: 1029978657}
+  currentPosition: {fileID: 0}
+  checkedRecently: 0
 --- !u!82 &1338560616
 AudioSource:
   m_ObjectHideFlags: 0
@@ -265,7 +310,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 243758081335279580, guid: ec12f7772c03e4c4c9e4c2f1643595ad,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 19727002dd4a83b4fbd5024cb6f63197, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f5859d7c8d838ba4e9a41f12f82364f2, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1

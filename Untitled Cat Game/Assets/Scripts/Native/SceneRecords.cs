@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Valve.VR;
 
 public class SceneRecords : MonoBehaviour
 {
@@ -25,10 +26,27 @@ public class SceneRecords : MonoBehaviour
     public Camera playerCam;
     Scene currentScene;
 
-    //Probably want to put some sort of player data management here
+    public GameObject deadBush;
+    Transform dbSpawn;
 
+    [Header("VR vs FPS player spawning")]
+    //Probably want to put some sort of player data management here
+    public GameObject vrPlayer;
+    public GameObject fpsPlayer;
+    GameObject player;
+    [Range(10f, 600f), Tooltip("Seconds between checks for the headset")]
+    public float timeBetweenChecks = 120f;
+
+    public Transform startLocation;
+    public Transform currentPosition;
+
+    public bool checkedRecently = false;
+    
     private void Start()
     {
+        currentPosition = startLocation;
+        StartCoroutine(VRStart());
+
         currentScene = SceneManager.GetActiveScene();
 
         if(currentScene.name == nameSceneFog)
@@ -37,12 +55,23 @@ public class SceneRecords : MonoBehaviour
             areaSpecificObject.transform.Rotate(areaSpecificObject.transform.eulerAngles.x, 90, -90);
             areaSpecificObject.transform.parent = playerCam.transform;
         }
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (player)
+        {
+            currentPosition = player.transform;
+        }
+
+        if (!checkedRecently)
+        {
+
+            //StopAllCoroutines();
+            //StartCoroutine(VRCheck());
+        }
         
     }
 
@@ -57,5 +86,57 @@ public class SceneRecords : MonoBehaviour
         GameObject temp = Instantiate(particleToMake, placement.position, placement.rotation);
         Destroy(temp, timeBeforeDelete);
         return;
+    }
+    public void ParticleMaker(Transform placement, float timeBeforeDelete)
+    {
+        GameObject temp = Instantiate(deadBush, placement.position, placement.rotation);
+        Destroy(temp, timeBeforeDelete);
+        return;
+    }
+
+    IEnumerator VRCheck()
+    {
+        checkedRecently = true;
+
+        if (Valve.VR.OpenVR.IsHmdPresent() && player == fpsPlayer)
+        {
+            GameObject tempPlayer = player;
+            player = Instantiate(vrPlayer, currentPosition.position, currentPosition.rotation);
+            Destroy(tempPlayer);
+            Debug.Log("HMD on");
+            checkedRecently = true;
+        }
+        if (!Valve.VR.OpenVR.IsHmdPresent() && player == vrPlayer)
+        {
+            GameObject tempPlayer = player;
+            player = Instantiate(fpsPlayer, currentPosition.position, currentPosition.rotation);
+            Destroy(tempPlayer);
+            Debug.Log("HMD off");
+            checkedRecently = true;
+        }
+
+        yield return new WaitForSecondsRealtime(timeBetweenChecks);
+        checkedRecently = false;
+    }
+
+    IEnumerator VRStart()
+    {
+        if (Valve.VR.OpenVR.IsHmdPresent())
+        {
+            player = Instantiate(vrPlayer, currentPosition.position, currentPosition.rotation);
+            playerCam = player.GetComponentInChildren<Camera>();
+            Debug.Log("HMD on");
+            checkedRecently = true;
+        }
+        if (!Valve.VR.OpenVR.IsHmdPresent())
+        {
+            player = Instantiate(fpsPlayer, currentPosition.position, currentPosition.rotation);
+            playerCam = player.GetComponentInChildren<Camera>();
+            Debug.Log("HMD off");
+            checkedRecently = true;
+        }
+        checkedRecently = true;
+        yield return new WaitForSecondsRealtime(timeBetweenChecks);
+        checkedRecently = false;
     }
 }

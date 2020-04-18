@@ -17,6 +17,7 @@ public class FollowPlayer : MonoBehaviour
     public float minBurnDistance = 1f, maxBurnDistance = 5f;
     public FireWall closestFireWall;
     public FireWall affectedFireWall;
+    public SceneRecords sr;
 
     // make a constant for wrath to stop at a certain distance
     public float EPSILON = 1.0f;
@@ -25,6 +26,8 @@ public class FollowPlayer : MonoBehaviour
     void Start()
     {
         
+        mTarget = sr.playerCam.transform;
+        StartCoroutine(SetFollower());
     }
 
     // Update is called once per frame
@@ -126,5 +129,11 @@ public class FollowPlayer : MonoBehaviour
     {
         yield return new WaitForSeconds(followWaitTimer);
         following = true;
+    }
+
+    IEnumerator SetFollower()
+    {
+        yield return new WaitForSecondsRealtime(2);
+        mTarget = sr.playerCam.transform;
     }
 }

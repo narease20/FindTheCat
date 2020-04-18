@@ -10868,6 +10868,38 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: f5859d7c8d838ba4e9a41f12f82364f2, type: 3}
+    - target: {fileID: 1029978657, guid: 73e168e6a6b287d49b40824763a5cecd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1029978657, guid: 73e168e6a6b287d49b40824763a5cecd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1029978657, guid: 73e168e6a6b287d49b40824763a5cecd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1029978657, guid: 73e168e6a6b287d49b40824763a5cecd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1029978657, guid: 73e168e6a6b287d49b40824763a5cecd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 23.61267
+      objectReference: {fileID: 0}
+    - target: {fileID: 1029978657, guid: 73e168e6a6b287d49b40824763a5cecd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1029978657, guid: 73e168e6a6b287d49b40824763a5cecd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 17.557045
+      objectReference: {fileID: 0}
+    - target: {fileID: 1029978657, guid: 73e168e6a6b287d49b40824763a5cecd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73e168e6a6b287d49b40824763a5cecd, type: 3}
 --- !u!1 &266896950
@@ -17748,11 +17780,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 414537487774363355, guid: 63be07ef09ba34c44a799a09d02406de,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 181784736268531239, guid: 63be07ef09ba34c44a799a09d02406de,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -17818,6 +17845,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 2076934154}
+    - target: {fileID: 414537487774363355, guid: 63be07ef09ba34c44a799a09d02406de,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 181784736268531236, guid: 63be07ef09ba34c44a799a09d02406de,
         type: 3}
       propertyPath: heightMeasureDistance
@@ -51619,7 +51651,7 @@ PrefabInstance:
     - target: {fileID: 8661668878033916295, guid: a168c98fbb446264cbeaa0d16758f5d9,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8661668878033916297, guid: a168c98fbb446264cbeaa0d16758f5d9,
         type: 3}
@@ -136699,6 +136731,7 @@ MonoBehaviour:
   canTransferScenes: 1
   cc: {fileID: 0}
   recorder: {fileID: 0}
+  myPortalType: 0
 --- !u!64 &2129959490
 MeshCollider:
   m_ObjectHideFlags: 0

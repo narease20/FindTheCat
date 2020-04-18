@@ -21,6 +21,11 @@ public class SceneChange : MonoBehaviour
     [HideInInspector]
     private MeshRenderer myMesh;
 
+    [HideInInspector]
+    public enum TypeOfPortal {Crystal, Tree};
+    [Tooltip("Is the collider attached to a crystal's mesh or a plane of fog on a tree?")]
+    public TypeOfPortal myPortalType;
+
     private void Start()
     {
         cc = GetComponent<MeshCollider>();
@@ -30,11 +35,11 @@ public class SceneChange : MonoBehaviour
         recorder = FindObjectOfType<SceneRecords>();
 
         myMesh = GetComponent<MeshRenderer>();
-        if (!canTransferScenes)
+        if (!canTransferScenes && myPortalType == TypeOfPortal.Crystal)
         {
             myMesh.material = recorder.nonActiveCrystal;
         }
-        if (canTransferScenes)
+        if (canTransferScenes && myPortalType == TypeOfPortal.Crystal)
         {
             myMesh.material = recorder.activeCrystal;
         }
@@ -61,8 +66,6 @@ public class SceneChange : MonoBehaviour
 
         SceneManager.LoadScene(newScene);
     }
-
-
 
     // Activate and Deactivate the "trigger" so a data manager can handle progression
     public void ActivateTrigger()
