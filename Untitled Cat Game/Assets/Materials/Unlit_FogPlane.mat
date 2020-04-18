@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Unlit_FogPlane
-  m_Shader: {fileID: 4800000, guid: 80145c81a6f6a024b875bac01cea38d7, type: 3}
+  m_Shader: {fileID: 4800000, guid: afff31906c41f4041a7c6d7e35f3f828, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -20,6 +20,6 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
-    - _Strength: 0.2
+    - _Strength: 3
     m_Colors:
-    - _Tint: {r: 1, g: 0.41037738, b: 0.41037738, a: 1}
+    - _Tint: {r: 0.16037735, g: 0.061276242, b: 0.061276242, a: 1}
