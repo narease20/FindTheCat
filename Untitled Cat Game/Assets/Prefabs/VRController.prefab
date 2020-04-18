@@ -336,7 +336,7 @@ GameObject:
   - component: {fileID: 397508430806053535}
   - component: {fileID: 350422270254744305}
   - component: {fileID: 89308709}
-  - component: {fileID: 4515944376821574134}
+  - component: {fileID: 5209266500972355931}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -469,7 +469,7 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
---- !u!114 &4515944376821574134
+--- !u!114 &5209266500972355931
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

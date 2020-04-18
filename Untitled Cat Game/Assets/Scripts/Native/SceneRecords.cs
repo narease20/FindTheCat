@@ -89,7 +89,7 @@ public class SceneRecords : MonoBehaviour
     }
     public void ParticleMaker(Transform placement, float timeBeforeDelete)
     {
-        GameObject temp = Instantiate(deadBush, placement.position, placement.rotation);
+        GameObject temp = Instantiate(deadBush, placement.position, deadBush.transform.rotation);
         Destroy(temp, timeBeforeDelete);
         return;
     }
@@ -124,7 +124,8 @@ public class SceneRecords : MonoBehaviour
         if (Valve.VR.OpenVR.IsHmdPresent())
         {
             player = Instantiate(vrPlayer, currentPosition.position, currentPosition.rotation);
-            playerCam = player.GetComponentInChildren<Camera>();
+            Transform temp = player.transform.GetChild(0);
+            playerCam = temp.GetComponentInChildren<Camera>();
             Debug.Log("HMD on");
             checkedRecently = true;
         }

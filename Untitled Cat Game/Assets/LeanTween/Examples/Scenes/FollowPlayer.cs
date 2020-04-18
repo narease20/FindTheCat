@@ -13,7 +13,7 @@ public class FollowPlayer : MonoBehaviour
     //public SphereCollider burnRange;
     [SerializeField, Range(0.1f, 10f)]
     public float burnTimer = 5f, followWaitTimer = 1f;
-    [SerializeField, Range(0.1f, 10f)]
+    [SerializeField, Range(0.1f, 20f)]
     public float minBurnDistance = 1f, maxBurnDistance = 5f;
     public FireWall closestFireWall;
     public FireWall affectedFireWall;
@@ -26,7 +26,6 @@ public class FollowPlayer : MonoBehaviour
     void Start()
     {
         
-        mTarget = sr.playerCam.transform;
         StartCoroutine(SetFollower());
     }
 
@@ -133,7 +132,9 @@ public class FollowPlayer : MonoBehaviour
 
     IEnumerator SetFollower()
     {
-        yield return new WaitForSecondsRealtime(2);
+        following = false;
+        yield return new WaitForSecondsRealtime(1);
         mTarget = sr.playerCam.transform;
+        following = true;
     }
 }
