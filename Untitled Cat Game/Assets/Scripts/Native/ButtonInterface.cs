@@ -100,8 +100,9 @@ public class ButtonInterface : MonoBehaviour
 
             if(timesInteracted == 7)
             {
-                Destroy(button);
-                DestroyObject(button);
+               // Destroy(button);
+              //  DestroyObject(button);
+                Destroy(GameObject.FindGameObjectWithTag("Button"));
             }
             
         }
