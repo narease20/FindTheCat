@@ -9,6 +9,7 @@ public class ButtonInterface : MonoBehaviour
     public Button button;
     public TextMeshProUGUI text;
     public BoxCollider inputBox;
+    public GameObject Button;
 
     [TextArea(3, 5)]
     public string[] newText;
@@ -95,6 +96,12 @@ public class ButtonInterface : MonoBehaviour
                 Clear();
                 Next();
                 timesInteracted++;
+            }
+
+            if(timesInteracted == 7)
+            {
+                Destroy(button);
+                DestroyObject(button);
             }
             
         }

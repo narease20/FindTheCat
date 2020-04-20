@@ -164,6 +164,7 @@
     <Compile Include="Assets\Scripts\Native\MeshCombiner.cs" />
     <Compile Include="Assets\Scripts\Native\MouseLook.cs" />
     <Compile Include="Assets\Scripts\Native\ObjCombineT.cs" />
+    <Compile Include="Assets\Scripts\Native\PetCatStartMove.cs" />
     <Compile Include="Assets\Scripts\Native\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Native\Pointer.cs" />
     <Compile Include="Assets\Scripts\Native\RotateTowards.cs" />
