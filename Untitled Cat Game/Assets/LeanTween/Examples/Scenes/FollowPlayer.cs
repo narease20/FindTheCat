@@ -133,7 +133,7 @@ public class FollowPlayer : MonoBehaviour
     IEnumerator SetFollower()
     {
         following = false;
-        yield return new WaitForSecondsRealtime(1);
+        yield return new WaitForSecondsRealtime(sr.waitBeforeCam);
         mTarget = sr.playerCam.transform;
         following = true;
     }

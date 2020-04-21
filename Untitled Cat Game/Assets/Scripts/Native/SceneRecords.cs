@@ -33,7 +33,7 @@ public class SceneRecords : MonoBehaviour
     //Probably want to put some sort of player data management here
     public GameObject vrPlayer;
     public GameObject fpsPlayer;
-    GameObject player;
+    public GameObject player;
     [Range(10f, 600f), Tooltip("Seconds between checks for the headset")]
     public float timeBetweenChecks = 120f;
 
@@ -41,6 +41,8 @@ public class SceneRecords : MonoBehaviour
     public Transform currentPosition;
 
     public bool checkedRecently = false;
+
+    public float waitBeforeCam = 0.5f;
     
     private void Start()
     {

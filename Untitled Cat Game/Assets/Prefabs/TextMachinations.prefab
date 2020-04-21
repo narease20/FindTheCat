@@ -238,6 +238,7 @@ MonoBehaviour:
   button: {fileID: 1867722469361629461}
   text: {fileID: 1916872534}
   inputBox: {fileID: 1867722469740481164}
+  buttonBox: {fileID: 1867722469361629463}
   newText:
   - "Nice. Now I can get a closer look at you.  \n[>>]"
   - "It's just as I thought. You shouldn't be here. \n[>>]"
@@ -531,3 +532,4 @@ MonoBehaviour:
   player: {fileID: 0}
   playerLocation: {fileID: 0}
   turnRate: 6.2831855
+  sr: {fileID: 0}

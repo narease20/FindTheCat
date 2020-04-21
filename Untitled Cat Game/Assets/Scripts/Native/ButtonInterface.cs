@@ -9,7 +9,7 @@ public class ButtonInterface : MonoBehaviour
     public Button button;
     public TextMeshProUGUI text;
     public BoxCollider inputBox;
-    public GameObject Button;
+    public GameObject buttonBox;
 
     [TextArea(3, 5)]
     public string[] newText;
@@ -29,12 +29,6 @@ public class ButtonInterface : MonoBehaviour
         sentences = new Queue<string>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void StartText()
     {
         sentences.Clear();
@@ -43,7 +37,7 @@ public class ButtonInterface : MonoBehaviour
         {
             sentences.Enqueue(newText[i]);
         }
-        //Next();
+        Next();
     }
 
     public void Next()
@@ -80,7 +74,7 @@ public class ButtonInterface : MonoBehaviour
     {
         if (button.interactable)
         {
-            Debug.Log("Text should appear?");
+            //Debug.Log("Text should appear?");
             if(timesInteracted == 0)
             {
                 if (!text.enabled)
@@ -89,20 +83,22 @@ public class ButtonInterface : MonoBehaviour
                 }
                 StartText();
                 timesInteracted++;
+                return;
             }
-            
-            if(timesInteracted > 0)
+
+            if (timesInteracted > 0 && timesInteracted <= newText.Length)
             {
                 Clear();
                 Next();
                 timesInteracted++;
             }
 
-            if(timesInteracted == 7)
+            if (timesInteracted > newText.Length)
             {
-               // Destroy(button);
-              //  DestroyObject(button);
-                Destroy(GameObject.FindGameObjectWithTag("Button"));
+                //Destroy(button);
+                //DestroyObject(button);
+                //Destroy(buttonBox);
+                buttonBox.SetActive(false);
             }
             
         }
