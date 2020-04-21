@@ -95,13 +95,14 @@ Debug.Log("Start Cat move script");
     // from https://answers.unity.com/questions/1305890/enabling-a-script-by-entering-a-trigger.html
     void OnTriggerEnter(Collider other)
     {
-Debug.Log("Hit it");
-        if (other.gameObject.tag == "Hand")
+    Debug.Log("Hit it");
+        if (other.gameObject.tag == "Player")
         {
 		Debug.Log("Hit the cat");
             myAnimator.SetBool("isWalking", true);
             myAnimator.SetBool("isSitting", false);
             moving = true;
+           
             // here we make the cat move. 
         }
     }
