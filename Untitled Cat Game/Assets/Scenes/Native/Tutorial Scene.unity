@@ -8376,6 +8376,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ea14ae28bd2e5d409cddd1db5f31fcb, type: 3}
+--- !u!95 &1195398692 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: 709d176d31cd0b24a94111a312af4d3b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1895601448}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1217764493
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17266,6 +17272,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1991047179}
   - component: {fileID: 1991047178}
+  - component: {fileID: 1991047180}
   m_Layer: 0
   m_Name: DollyCart1
   m_TagString: Untagged
@@ -17280,7 +17287,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1991047177}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 99a9c787e5d1bbf48a389834c4a9641c, type: 3}
   m_Name: 
@@ -17305,6 +17312,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1991047180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991047177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ee26d38a0917df4299f8ac237ec2b91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Path: {fileID: 5536421}
+  myAnimator: {fileID: 1195398692}
+  m_UpdateMethod: 0
+  m_PositionUnits: 1
+  m_Speed: 1
+  m_Position: 0
 --- !u!1001 &1995199434
 PrefabInstance:
   m_ObjectHideFlags: 0
