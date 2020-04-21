@@ -52177,8 +52177,8 @@ PrefabInstance:
     - target: {fileID: 1867722469740481171, guid: 106abc042c5647b448e67e005bd9d2c2,
         type: 3}
       propertyPath: newText.Array.data[3]
-      value: 'Why don''t you pick up that flashlight cube, there? If you click your
-        touchpad or right click your mouse, it''ll light up this place a bit more.
+      value: 'Why don''t you pick up that flashlight cube, there? If you right click
+        your mouse, it''ll light up this place a bit more.
 
         [>>]'
       objectReference: {fileID: 0}
@@ -52197,15 +52197,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1916872534, guid: 106abc042c5647b448e67e005bd9d2c2, type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 46
+      value: 58
       objectReference: {fileID: 0}
     - target: {fileID: 1916872534, guid: 106abc042c5647b448e67e005bd9d2c2, type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1916872534, guid: 106abc042c5647b448e67e005bd9d2c2, type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1916872534, guid: 106abc042c5647b448e67e005bd9d2c2, type: 3}
       propertyPath: m_textInfo.lineCount
@@ -52217,7 +52217,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1916872534, guid: 106abc042c5647b448e67e005bd9d2c2, type: 3}
       propertyPath: m_text
-      value: "Oh goodness! I'm sorry, did I scare you? \n[>>]"
+      value: "Oh goodness! I'm sorry, did I scare you? \n[Press Spacebar]"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 106abc042c5647b448e67e005bd9d2c2, type: 3}

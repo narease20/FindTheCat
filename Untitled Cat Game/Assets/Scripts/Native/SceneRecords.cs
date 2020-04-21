@@ -123,7 +123,7 @@ public class SceneRecords : MonoBehaviour
 
     IEnumerator VRStart()
     {
-        if (Valve.VR.OpenVR.IsHmdPresent())
+       /* if (Valve.VR.OpenVR.IsHmdPresent())
         {
             player = Instantiate(vrPlayer, currentPosition.position, currentPosition.rotation);
             Transform temp = player.transform.GetChild(0);
@@ -132,12 +132,12 @@ public class SceneRecords : MonoBehaviour
             checkedRecently = true;
         }
         if (!Valve.VR.OpenVR.IsHmdPresent())
-        {
+        {*/
             player = Instantiate(fpsPlayer, currentPosition.position, currentPosition.rotation);
             playerCam = player.GetComponentInChildren<Camera>();
             Debug.Log("HMD off");
             checkedRecently = true;
-        }
+        //}
         checkedRecently = true;
         yield return new WaitForSecondsRealtime(timeBetweenChecks);
         checkedRecently = false;

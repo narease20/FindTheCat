@@ -15358,6 +15358,44 @@ PrefabInstance:
       propertyPath: playerLocation
       value: 
       objectReference: {fileID: 1737738169}
+    - target: {fileID: 1867722469740481171, guid: 106abc042c5647b448e67e005bd9d2c2,
+        type: 3}
+      propertyPath: newText.Array.data[4]
+      value: 'Pet the cat by getting close to it! Maybe it''ll show you the way out
+        of here.
+
+        [>>]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867722469740481171, guid: 106abc042c5647b448e67e005bd9d2c2,
+        type: 3}
+      propertyPath: newText.Array.data[5]
+      value: 'You can also pick up items using left click. How do I know all this?
+
+        ...Secret!
+
+        Go ahead and pet that cat!'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916872534, guid: 106abc042c5647b448e67e005bd9d2c2, type: 3}
+      propertyPath: m_text
+      value: "Hey, over here! \nUse WASD or the arrow keys to come closer!\nThen click
+        this box while your arrow is over it!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916872534, guid: 106abc042c5647b448e67e005bd9d2c2, type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 108
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916872534, guid: 106abc042c5647b448e67e005bd9d2c2, type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916872534, guid: 106abc042c5647b448e67e005bd9d2c2, type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916872534, guid: 106abc042c5647b448e67e005bd9d2c2, type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 22
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 106abc042c5647b448e67e005bd9d2c2, type: 3}
 --- !u!1 &1715247514
