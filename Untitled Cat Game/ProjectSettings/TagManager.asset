@@ -9,6 +9,7 @@ TagManager:
   - FxTemporaire
   - Button
   - FireWall
+  - Hand
   layers:
   - Default
   - TransparentFX
