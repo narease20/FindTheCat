@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Native/WrathMazeScene.unity
     guid: 9448f3a70770c8646b91c91646f65190
+  - enabled: 1
+    path: Assets/Scenes/Native/LustFlashlightScene.unity
+    guid: c7016bf3913e4634d8df8a0c7ffcd22b
   m_configObjects: {}
