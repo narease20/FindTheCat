@@ -61,7 +61,7 @@ public class ButtonInterface : MonoBehaviour
             text.text += letter;
             yield return null;
         }
-        // Isaiah, the inabler is here!
+        // Isaiah, the enabler is here!
         //inputBox.enabled = true;
     }
 

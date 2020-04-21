@@ -14,12 +14,7 @@ using UnityEngine;
  * */
 public class PetCatStartMove : MonoBehaviour
 {
-    // I think this is how I make it so I can call the script?
-    //public class CinemachineDollyCart;
-    //public UnityScript MyScript;
-    //public CinemachineDollyCart myScript;
-    //Cinemachine CinemachineDollyCart
-    //DollyCart1.GetComponent(CinemachineDollyCart).enabled = false;
+
     // Start is called before the first frame update
     /// <summary>The path to follow</summary>
     [Tooltip("The path to follow")]
@@ -108,13 +103,9 @@ void Start()
         }
     }
 
-    void OnTriggerExit(Collision other)
+   /* void OnTriggerExit(Collision other)
     {
-        /*
-        if (other.gameObject.tag == "Player")
-        {
-
-        } */
+        
     }
-
+    */
 }
