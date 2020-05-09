@@ -53,11 +53,21 @@ ScriptsOnlyBuild:
     SteamVR_Input_Editor.dll:
     - Valve.VR.SteamVR_Input_EditorWindow
     Unity.Postprocessing.Runtime.dll:
+    - UnityEngine.Rendering.PostProcessing.AmbientOcclusion
+    - UnityEngine.Rendering.PostProcessing.AutoExposure
     - UnityEngine.Rendering.PostProcessing.Bloom
+    - UnityEngine.Rendering.PostProcessing.ChromaticAberration
+    - UnityEngine.Rendering.PostProcessing.ColorGrading
+    - UnityEngine.Rendering.PostProcessing.DepthOfField
+    - UnityEngine.Rendering.PostProcessing.Grain
+    - UnityEngine.Rendering.PostProcessing.LensDistortion
+    - UnityEngine.Rendering.PostProcessing.MotionBlur
     - UnityEngine.Rendering.PostProcessing.PostProcessLayer
     - UnityEngine.Rendering.PostProcessing.PostProcessProfile
     - UnityEngine.Rendering.PostProcessing.PostProcessResources
     - UnityEngine.Rendering.PostProcessing.PostProcessVolume
+    - UnityEngine.Rendering.PostProcessing.ScreenSpaceReflections
+    - UnityEngine.Rendering.PostProcessing.Vignette
     Unity.ProBuilder.dll:
     - UnityEngine.ProBuilder.ProBuilderMesh
     Unity.TextMeshPro.dll:
@@ -74,6 +84,7 @@ ScriptsOnlyBuild:
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
+    - UnityEditor.TestTools.TestRunner.TestListCacheData
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
@@ -3033,5 +3044,5 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Native/OpenArea.unity
   - Assets/Scenes/Native/WrathMazeScene.unity
   - Assets/Scenes/Native/LustFlashlightScene.unity
-  playerPath: C:/Users/nance/Documents/GitHub/FindTheCat/Builds/Desktop Version/Untitled
+  playerPath: C:/Users/nance/Documents/GitHub/FindTheCat/Builds/5-9 Testing/Untitled
     Cat Game.exe

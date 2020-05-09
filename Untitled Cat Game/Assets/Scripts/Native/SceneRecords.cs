@@ -100,14 +100,14 @@ public class SceneRecords : MonoBehaviour
     {
         checkedRecently = true;
 
-        if (Valve.VR.OpenVR.IsHmdPresent() && player == fpsPlayer)
+       /* if (Valve.VR.OpenVR.IsHmdPresent() && player == fpsPlayer)
         {
             GameObject tempPlayer = player;
             player = Instantiate(vrPlayer, currentPosition.position, currentPosition.rotation);
             Destroy(tempPlayer);
             Debug.Log("HMD on");
             checkedRecently = true;
-        }
+        }*/
         if (!Valve.VR.OpenVR.IsHmdPresent() && player == vrPlayer)
         {
             GameObject tempPlayer = player;
