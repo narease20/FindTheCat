@@ -84,7 +84,6 @@ ScriptsOnlyBuild:
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
-    - UnityEditor.TestTools.TestRunner.TestListCacheData
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
@@ -3044,5 +3043,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Native/OpenArea.unity
   - Assets/Scenes/Native/WrathMazeScene.unity
   - Assets/Scenes/Native/LustFlashlightScene.unity
-  playerPath: C:/Users/nance/Documents/GitHub/FindTheCat/Builds/5-9 Testing/Untitled
-    Cat Game.exe
+  playerPath: C:/Users/nance/Documents/GitHub/FindTheCat/Builds/5-9 Testing/Purrcatory.exe
